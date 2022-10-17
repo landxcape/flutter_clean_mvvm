@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_mvvm/presentation/color_manager.dart';
+import 'package:flutter_clean_mvvm/presentation/font_manager.dart';
+import 'package:flutter_clean_mvvm/presentation/styles_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/values_manager.dart';
 
 ThemeData getApplicationTheme() {
@@ -8,7 +10,12 @@ ThemeData getApplicationTheme() {
     primaryColor: ColorManager.primary,
     primaryColorLight: ColorManager.primaryOpacity70,
     primaryColorDark: ColorManager.primaryDark,
-    disabledColor: ColorManager.grey1, // for disable button
+    disabledColor: ColorManager.grey1,
+
+    // ripple color
+    splashColor: ColorManager.primaryOpacity70,
+
+    // for disable button
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: ColorManager.grey,
     ),
@@ -21,6 +28,16 @@ ThemeData getApplicationTheme() {
     ),
 
     // app bar theme
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      color: ColorManager.primary,
+      shadowColor: ColorManager.primaryOpacity70,
+      elevation: AppSize.s4,
+      titleTextStyle: getRegularStyle(
+        fontSize: FontSize.s16,
+        color: ColorManager.white,
+      ),
+    ),
 
     // button theme
 
