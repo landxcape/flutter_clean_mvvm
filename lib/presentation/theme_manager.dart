@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_mvvm/presentation/color_manager.dart';
+import 'package:flutter_clean_mvvm/presentation/values_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
@@ -13,6 +14,11 @@ ThemeData getApplicationTheme() {
     ),
 
     // card view theme
+    cardTheme: CardTheme(
+      color: ColorManager.white,
+      shadowColor: ColorManager.grey,
+      elevation: AppSize.s4,
+    ),
 
     // app bar theme
 
