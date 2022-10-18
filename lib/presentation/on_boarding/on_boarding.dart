@@ -62,9 +62,62 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             ),
           ),
           // add layout for indicator and arrows
+          _getBottomSheetWidget(),
         ]),
       ),
     );
+  }
+
+  Widget _getBottomSheetWidget() {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      // left arrow
+      Padding(
+        padding: const EdgeInsets.all(AppPadding.p14),
+        child: GestureDetector(
+          onTap: () {
+            // go to next slide
+          },
+          child: SizedBox(
+            height: AppSize.s20,
+            width: AppSize.s20,
+            child: SvgPicture.asset(ImageAssets.leftArrowIc),
+          ),
+        ),
+      ),
+
+      // circles indicator
+      Row(
+        children: [
+          for (int i = 0; i < _list.length; i++)
+            Padding(
+              padding: const EdgeInsets.all(AppPadding.p8),
+              child: _getCircleIndicator(i),
+            ),
+        ],
+      ),
+
+      // right arrow
+      Padding(
+        padding: const EdgeInsets.all(AppPadding.p14),
+        child: GestureDetector(
+          onTap: () {
+            // go to previous slide
+          },
+          child: SizedBox(
+            height: AppSize.s20,
+            width: AppSize.s20,
+            child: SvgPicture.asset(ImageAssets.rightArrowIc),
+          ),
+        ),
+      ),
+    ]);
+  }
+
+  _getCircleIndicator(int index) {
+    if (index == _currentIndex) {
+      return SvgPicture.asset(ImageAssets.holowCircieIc); // selected slider
+    }
+    return SvgPicture.asset(ImageAssets.solidCircleIc); // selected slider
   }
 }
 
