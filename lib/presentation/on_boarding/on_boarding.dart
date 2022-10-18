@@ -76,6 +76,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         child: GestureDetector(
           onTap: () {
             // go to next slide
+            _pageController.animateToPage(
+              _getPreviousIndex(),
+              duration: const Duration(milliseconds: DurationConstant.d300),
+              curve: Curves.bounceInOut,
+            );
           },
           child: SizedBox(
             height: AppSize.s20,
@@ -102,6 +107,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         child: GestureDetector(
           onTap: () {
             // go to previous slide
+            _pageController.animateToPage(
+              _getNextIndex(),
+              duration: const Duration(milliseconds: DurationConstant.d300),
+              curve: Curves.bounceInOut,
+            );
           },
           child: SizedBox(
             height: AppSize.s20,
@@ -113,7 +123,23 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     ]);
   }
 
-  _getCircleIndicator(int index) {
+  int _getPreviousIndex() {
+    int previousIndex = _currentIndex--;
+    if (previousIndex == -1) {
+      _currentIndex = _list.length - 1; // infinite loop to go to the last slider list
+    }
+    return _currentIndex;
+  }
+
+  int _getNextIndex() {
+    int nextIndex = _currentIndex++;
+    if (nextIndex == -1) {
+      _currentIndex = 0; // infinite loop to go to the start slider list
+    }
+    return _currentIndex;
+  }
+
+  Widget _getCircleIndicator(int index) {
     if (index == _currentIndex) {
       return SvgPicture.asset(ImageAssets.holowCircieIc); // selected slider
     }
