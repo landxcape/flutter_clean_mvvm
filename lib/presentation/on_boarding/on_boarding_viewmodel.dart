@@ -3,19 +3,27 @@ import 'dart:async';
 import 'package:flutter_clean_mvvm/domain/model.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 
+import '../resources/assets_manager.dart';
+import '../resources/strings_manager.dart';
+
 class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, OnBoardingViewModelOutputs {
   //stream controllers
   final StreamController _streamController = StreamController<SliderViewObject>();
 
+  late final List<SliderObject> _list;
+  final int _currentIndex = 0;
+
   // inputs
   @override
   void dispose() {
-    // TODO: implement dispose
+    _streamController.close();
   }
 
   @override
   void start() {
-    // TODO: implement start
+    _list = _getSliderData();
+    // send slider data to view
+    _postDataToView();
   }
 
   @override
@@ -31,6 +39,27 @@ class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, 
   @override
   void onPageChanged(int index) {
     // TODO: implement onPageChanged
+  }
+
+  @override
+  // TODO: implement inputSliderViewObject
+  Sink get inputSliderViewObject => _streamController.sink;
+
+  // outputs
+  @override
+  // TODO: implement outputSliderViewObject
+  Stream<SliderViewObject> get outputSliderViewObject => _streamController.stream.map((sliderViewObject) => sliderViewObject);
+
+  // private functions
+  List<SliderObject> _getSliderData() => [
+        SliderObject(AppStrings.onBoardingTitle1, AppStrings.onBoardingSubTitle1, ImageAssets.onboardingLogo1),
+        SliderObject(AppStrings.onBoardingTitle2, AppStrings.onBoardingSubTitle2, ImageAssets.onboardingLogo2),
+        SliderObject(AppStrings.onBoardingTitle3, AppStrings.onBoardingSubTitle3, ImageAssets.onboardingLogo3),
+        SliderObject(AppStrings.onBoardingTitle4, AppStrings.onBoardingSubTitle4, ImageAssets.onboardingLogo4),
+      ];
+
+  _postDataToView() {
+    inputSliderViewObject.add(SliderViewObject(_list[_currentIndex], _list.length, _currentIndex));
   }
 }
 
