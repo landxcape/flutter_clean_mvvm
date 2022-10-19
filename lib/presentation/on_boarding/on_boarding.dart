@@ -127,19 +127,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   }
 
   int _getPreviousIndex() {
-    int previousIndex = _currentIndex--;
-    if (previousIndex <= 0) {
-      _currentIndex = _list.length - 1; // infinite loop to go to the last slider list
-    }
-    return _currentIndex;
+    
   }
 
   int _getNextIndex() {
-    int nextIndex = _currentIndex++;
-    if (nextIndex >= _list.length - 1) {
-      _currentIndex = 0; // infinite loop to go to the start slider list
-    }
-    return _currentIndex;
+    
   }
 
   Widget _getCircleIndicator(int index) {

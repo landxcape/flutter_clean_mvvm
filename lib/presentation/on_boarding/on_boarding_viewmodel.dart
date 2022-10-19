@@ -11,7 +11,7 @@ class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, 
   final StreamController _streamController = StreamController<SliderViewObject>();
 
   late final List<SliderObject> _list;
-  final int _currentIndex = 0;
+  int _currentIndex = 0;
 
   // inputs
   @override
@@ -28,17 +28,26 @@ class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, 
 
   @override
   void goNext() {
-    // TODO: implement goNext
+    int nextIndex = _currentIndex++;
+    if (nextIndex >= _list.length - 1) {
+      _currentIndex = 0; // infinite loop to go to the start slider list
+    }
+    _postDataToView();
   }
 
   @override
   void goPrevious() {
-    // TODO: implement goPrevious
+    int previousIndex = _currentIndex--;
+    if (previousIndex <= 0) {
+      _currentIndex = _list.length - 1; // infinite loop to go to the last slider list
+    }
+    _postDataToView();
   }
 
   @override
   void onPageChanged(int index) {
-    // TODO: implement onPageChanged
+    _currentIndex = index;
+    _postDataToView();
   }
 
   @override
