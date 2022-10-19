@@ -39,10 +39,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   @override
   Widget build(BuildContext context) {
-    return _getContentWidget();
+    return StreamBuilder<SliderViewObject>(
+      stream: _onBoardingViewModel.outputSliderViewObject,
+      builder: (context, snapshot) {
+        return _getContentWidget(snapshot.data);
+      },
+    );
   }
 
-  Widget _getContentWidget() {
+  Widget _getContentWidget(SliderViewObject? sliderViewObject) {
+    if (sliderViewObject == null) {
+      return Container();
+    }
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -56,14 +64,12 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       ),
       body: PageView.builder(
         controller: _pageController,
-        itemCount: _list.length,
+        itemCount: sliderViewObject.numOfSlides,
         onPageChanged: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          _onBoardingViewModel.onPageChanged(index);
         },
         itemBuilder: (context, index) {
-          return OnBoardingPage(_list[index]);
+          return OnBoardingPage(sliderViewObject.sliderObject);
         },
       ),
       bottomSheet: Container(
@@ -84,13 +90,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             ),
           ),
           // add layout for indicator and arrows
-          _getBottomSheetWidget(),
+          _getBottomSheetWidget(sliderViewObject),
         ]),
       ),
     );
   }
 
-  Widget _getBottomSheetWidget() {
+  Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
     return Container(
       color: ColorManager.primary,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -99,9 +105,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
             onTap: () {
-              // go to next slide
+              // go to previous slide
               _pageController.animateToPage(
-                _getPreviousIndex(),
+                _onBoardingViewModel.goPrevious(),
                 duration: const Duration(milliseconds: DurationConstant.d300),
                 curve: Curves.bounceInOut,
               );
@@ -117,10 +123,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         // circles indicator
         Row(
           children: [
-            for (int i = 0; i < _list.length; i++)
+            for (int i = 0; i < sliderViewObject.numOfSlides; i++)
               Padding(
                 padding: const EdgeInsets.all(AppPadding.p8),
-                child: _getCircleIndicator(i),
+                child: _getCircleIndicator(i, sliderViewObject.currentIndex),
               ),
           ],
         ),
@@ -130,9 +136,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
             onTap: () {
-              // go to previous slide
+              // go to next slide
               _pageController.animateToPage(
-                _getNextIndex(),
+                _onBoardingViewModel.goNext(),
                 duration: const Duration(milliseconds: DurationConstant.d300),
                 curve: Curves.bounceInOut,
               );
@@ -148,8 +154,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  Widget _getCircleIndicator(int index) {
-    if (index == _currentIndex) {
+  Widget _getCircleIndicator(int index, int currentIndex) {
+    if (index == currentIndex) {
       return SvgPicture.asset(ImageAssets.holowCircieIc); // selected slider
     }
     return SvgPicture.asset(ImageAssets.solidCircleIc); // selected slider
