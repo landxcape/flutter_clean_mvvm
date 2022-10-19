@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_clean_mvvm/presentation/on_boarding/on_boarding_viewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
@@ -18,9 +19,30 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController(initialPage: 0);
+  final OnBoardingViewModel _onBoardingViewModel = OnBoardingViewModel();
+
+  _bind() {
+    _onBoardingViewModel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _onBoardingViewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return _getContentWidget();
+  }
+
+  Widget _getContentWidget() {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -126,25 +148,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  int _getPreviousIndex() {
-    
-  }
-
-  int _getNextIndex() {
-    
-  }
-
   Widget _getCircleIndicator(int index) {
     if (index == _currentIndex) {
       return SvgPicture.asset(ImageAssets.holowCircieIc); // selected slider
     }
     return SvgPicture.asset(ImageAssets.solidCircleIc); // selected slider
-  }
-
-  @override
-  void dispose() {
-    // TODO: viewmodel.dispose();
-    super.dispose();
   }
 }
 
