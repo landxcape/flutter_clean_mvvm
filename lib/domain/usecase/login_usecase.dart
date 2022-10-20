@@ -1,3 +1,4 @@
+import 'package:flutter_clean_mvvm/app/functions.dart';
 import 'package:flutter_clean_mvvm/data/network/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_clean_mvvm/data/request/request.dart';
@@ -11,11 +12,13 @@ class LoginUseCase implements BaseUseCase<LoginUseCaseInput, Authentication> {
 
   @override
   Future<Either<Failure, Authentication>> execute(LoginUseCaseInput input) async {
-    await _repository.login(LoginRequest(
+    DeviceInfo deviceInfo = await getDeviceDetails();
+
+    return await _repository.login(LoginRequest(
       input.email,
       input.password,
-      'imei',
-      'deviceType',
+      deviceInfo.identifier,
+      deviceInfo.name,
     ));
   }
 }
