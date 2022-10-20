@@ -1,3 +1,5 @@
+import 'failure.dart';
+
 enum DataSource {
   success,
   noContent,
@@ -12,6 +14,37 @@ enum DataSource {
   sendTimeout,
   cacheError,
   noInternetConnection,
+}
+
+extension DataSourceExtension on DataSource {
+  Failure getFailure() {
+    switch (this) {
+      case DataSource.badRequest:
+        return Failure(ResponseCode.badRequest, ResponseMessage.badRequest);
+      case DataSource.forbidden:
+        return Failure(ResponseCode.forbidden, ResponseMessage.forbidden);
+      case DataSource.unauthorised:
+        return Failure(ResponseCode.unauthorised, ResponseMessage.unauthorised);
+      case DataSource.notFound:
+        return Failure(ResponseCode.notFound, ResponseMessage.notFound);
+      case DataSource.internalServerError:
+        return Failure(ResponseCode.internalServerError, ResponseMessage.internalServerError);
+      case DataSource.connectTimeout:
+        return Failure(ResponseCode.connectTimeout, ResponseMessage.connectTimeout);
+      case DataSource.cancel:
+        return Failure(ResponseCode.cancel, ResponseMessage.cancel);
+      case DataSource.receiveTimeout:
+        return Failure(ResponseCode.receiveTimeout, ResponseMessage.receiveTimeout);
+      case DataSource.sendTimeout:
+        return Failure(ResponseCode.sendTimeout, ResponseMessage.sendTimeout);
+      case DataSource.cacheError:
+        return Failure(ResponseCode.cacheError, ResponseMessage.cacheError);
+      case DataSource.noInternetConnection:
+        return Failure(ResponseCode.noInternetConnection, ResponseMessage.noInternetConnection);
+      default:
+        break;
+    }
+  }
 }
 
 class ResponseCode {
