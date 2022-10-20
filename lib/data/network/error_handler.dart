@@ -42,7 +42,7 @@ extension DataSourceExtension on DataSource {
       case DataSource.noInternetConnection:
         return Failure(ResponseCode.noInternetConnection, ResponseMessage.noInternetConnection);
       default:
-        break;
+        return Failure(ResponseCode.unknown, ResponseMessage.unknown);
     }
   }
 }
