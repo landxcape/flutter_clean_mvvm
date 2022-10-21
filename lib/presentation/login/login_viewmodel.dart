@@ -31,14 +31,12 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   @override
   setPassword(String password) {
-    // TODO: implement setPassword
-    throw UnimplementedError();
+    inputPassword.add(password);
   }
 
   @override
   setUsername(String username) {
-    // TODO: implement setUsername
-    throw UnimplementedError();
+    inputUsername.add(username);
   }
 
   @override
