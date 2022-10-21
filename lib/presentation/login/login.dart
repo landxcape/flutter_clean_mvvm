@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 
@@ -13,7 +15,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel(null); // TODO: pass loginUsecase
+  LoginUseCase loginUseCase = LoginUseCase(_repository);
+  final LoginViewModel _viewModel = LoginViewModel(loginUseCase); // TODO: pass loginUsecase
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -45,6 +48,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _getContentWidget() {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       body: Container(
         padding: const EdgeInsets.only(top: AppPadding.p100),
         color: ColorManager.white,
@@ -95,16 +99,45 @@ class _LoginViewState extends State<LoginView> {
                 child: StreamBuilder<bool>(
                     stream: _viewModel.outputIsAllInputValid,
                     builder: (context, snapshot) {
-                      return ElevatedButton(
-                        onPressed: (snapshot.data ?? false)
-                            ? () {
-                                _viewModel.login();
-                              }
-                            : null,
-                        child: const Text(AppStrings.login),
+                      return SizedBox(
+                        width: double.infinity,
+                        height: AppSize.s40,
+                        child: ElevatedButton(
+                          onPressed: (snapshot.data ?? false)
+                              ? () {
+                                  _viewModel.login();
+                                }
+                              : null,
+                          child: const Text(AppStrings.login),
+                        ),
                       );
                     }),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(AppPadding.p28, AppPadding.p8, AppPadding.p28, 0.0),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, Routes.forgetPasswordRoute);
+                    },
+                    child: Text(
+                      AppStrings.forgetPassword,
+                      style: Theme.of(context).textTheme.subtitle2,
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, Routes.registerRoute);
+                    },
+                    child: Text(
+                      AppStrings.registerText,
+                      style: Theme.of(context).textTheme.subtitle2,
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                ]),
+              ),
             ]),
           ),
         ),
