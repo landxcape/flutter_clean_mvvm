@@ -33,7 +33,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   @override
   login() async {
-    (await _loginUseCase.execute(LoginUseCaseInput(
+    (await _loginUseCase!.execute(LoginUseCaseInput(
       loginObject.username,
       loginObject.password,
     )))

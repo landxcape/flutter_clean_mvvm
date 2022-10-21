@@ -19,10 +19,10 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
   final PageController _pageController = PageController(initialPage: 0);
-  final OnBoardingViewModel _onBoardingViewModel = OnBoardingViewModel();
+  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
 
   _bind() {
-    _onBoardingViewModel.start();
+    _viewModel.start();
   }
 
   @override
@@ -33,14 +33,14 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   @override
   void dispose() {
-    _onBoardingViewModel.dispose();
+    _viewModel.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<SliderViewObject>(
-      stream: _onBoardingViewModel.outputSliderViewObject,
+      stream: _viewModel.outputSliderViewObject,
       builder: (context, snapshot) {
         return _getContentWidget(snapshot.data);
       },
@@ -66,7 +66,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         controller: _pageController,
         itemCount: sliderViewObject.numOfSlides,
         onPageChanged: (index) {
-          _onBoardingViewModel.onPageChanged(index);
+          _viewModel.onPageChanged(index);
         },
         itemBuilder: (context, index) {
           return OnBoardingPage(sliderViewObject.sliderObject);
@@ -107,7 +107,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             onTap: () {
               // go to previous slide
               _pageController.animateToPage(
-                _onBoardingViewModel.goPrevious(),
+                _viewModel.goPrevious(),
                 duration: const Duration(milliseconds: DurationConstant.d300),
                 curve: Curves.bounceInOut,
               );
@@ -138,7 +138,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             onTap: () {
               // go to next slide
               _pageController.animateToPage(
-                _onBoardingViewModel.goNext(),
+                _viewModel.goNext(),
                 duration: const Duration(milliseconds: DurationConstant.d300),
                 curve: Curves.bounceInOut,
               );
