@@ -4,7 +4,6 @@ import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -53,7 +52,7 @@ class _LoginViewState extends State<LoginView> {
           child: Form(
             key: _formKey,
             child: Column(children: [
-              SvgPicture.asset(ImageAssets.loginIc),
+              const Image(image: AssetImage(ImageAssets.splashLogo)),
               const SizedBox(height: AppSize.s28),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
