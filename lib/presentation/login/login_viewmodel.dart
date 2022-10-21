@@ -10,7 +10,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   LoginObject loginObject = LoginObject('', '');
 
-  final LoginUseCase _loginUseCase;
+  final LoginUseCase? _loginUseCase; // TODO: remove ?
   LoginViewModel(this._loginUseCase);
 
   // inputs
