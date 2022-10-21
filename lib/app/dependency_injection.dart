@@ -1,4 +1,7 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:flutter_clean_mvvm/app/app_prefs.dart';
 import 'package:flutter_clean_mvvm/data/data_source/remote_data_source.dart';
 import 'package:flutter_clean_mvvm/data/network/app_api.dart';
@@ -7,8 +10,6 @@ import 'package:flutter_clean_mvvm/data/network/network_info.dart';
 import 'package:flutter_clean_mvvm/domain/repository/repository.dart';
 import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/repository/repository_impl.dart';
 
@@ -24,7 +25,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<AppPreferences>(() => AppPreferences(instance()));
 
   // network info instance
-  instance.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(DataConnectionChecker()));
+  instance.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()));
 
   // dio factory
   instance.registerLazySingleton<DioFactory>(() => DioFactory(instance()));

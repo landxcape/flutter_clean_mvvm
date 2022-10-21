@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_clean_mvvm">
-<usage-permission android:name="android.permission.INTERNET"/>
+package="com.example.flutter_clean_mvvm">
+
+<uses-permission android:name="android.permission.INTERNET"/>
 
    <application
         android:usesCleartextTraffic="true"
