@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
+import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
@@ -15,8 +15,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginUseCase loginUseCase = LoginUseCase(_repository);
-  final LoginViewModel _viewModel = LoginViewModel(loginUseCase); // TODO: pass loginUsecase
+  final LoginViewModel _viewModel = instance<LoginViewModel>(); // TODO: pass loginUsecase
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
