@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
 
@@ -9,6 +10,10 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   LoginObject loginObject = LoginObject('', '');
 
+  final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
+
+  // inputs
   @override
   void dispose() {
     _usernameStreamController.close();
@@ -27,9 +32,21 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
   Sink get inputUsername => _usernameStreamController.sink;
 
   @override
-  login() {
-    // TODO: implement login
-    throw UnimplementedError();
+  login() async {
+    (await _loginUseCase.execute(LoginUseCaseInput(
+      loginObject.username,
+      loginObject.password,
+    )))
+        .fold(
+      (failure) => {
+        // left -> failure
+        print(failure.message)
+      },
+      (data) => {
+        // right -> success (data)
+        print(data.customer?.name)
+      },
+    );
   }
 
   @override
@@ -44,6 +61,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
     loginObject = loginObject.copyWith(username: username); // data class operation same as kotlin
   }
 
+  // outputs
   @override
   Stream<bool> get outputIsPasswordValid => _passwordStreamController.stream.map((password) => _isPasswordValid(password));
 
