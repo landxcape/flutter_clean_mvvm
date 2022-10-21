@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -40,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return _getContentWidget();
   }
 
   Widget _getContentWidget() {
@@ -62,10 +63,43 @@ class _LoginViewState extends State<LoginView> {
                     return TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: _usernameController,
+                      decoration: InputDecoration(
+                        hintText: AppStrings.username,
+                        labelText: AppStrings.username,
+                        errorText: (snapshot.data ?? true) ? null : AppStrings.usernameError,
+                      ),
                     );
                   },
                 ),
               ),
+              const SizedBox(height: AppSize.s28),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+                child: StreamBuilder<bool>(
+                  stream: _viewModel.outputIsPasswordValid,
+                  builder: (context, snapshot) {
+                    return TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        hintText: AppStrings.password,
+                        labelText: AppStrings.password,
+                        errorText: (snapshot.data ?? true) ? null : AppStrings.passwordError,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: AppSize.s28),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+                child: StreamBuilder(builder: (context, snapshot) {
+                  return ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(AppStrings.login),
+                  );
+                }),
+              )
             ]),
           ),
         ),
