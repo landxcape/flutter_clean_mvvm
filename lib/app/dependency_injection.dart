@@ -5,6 +5,8 @@ import 'package:flutter_clean_mvvm/data/network/app_api.dart';
 import 'package:flutter_clean_mvvm/data/network/dio_factory.dart';
 import 'package:flutter_clean_mvvm/data/network/network_info.dart';
 import 'package:flutter_clean_mvvm/domain/repository/repository.dart';
+import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
+import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,5 +38,11 @@ Future<void> initAppModule() async {
 
   // repository
   instance.registerLazySingleton<Repository>(() => RepositoryImpl(instance(), instance()));
-  
+}
+
+initLoginModule() {
+  if (!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
+    instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
 }
