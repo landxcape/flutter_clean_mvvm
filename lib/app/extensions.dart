@@ -4,7 +4,7 @@ import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 extension NonNullString on String? {
   String orEmpty() {
     if (this == null) {
-      return empty;
+      return emptyString;
     }
     return this!;
   }
@@ -14,7 +14,7 @@ extension NonNullString on String? {
 extension NonNullInteger on int? {
   int orZero() {
     if (this == null) {
-      return zero;
+      return zeroInt;
     }
     return this!;
   }
