@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewModelOutputs {
@@ -41,6 +42,8 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   @override
   login() async {
+    inputState.add(LoadingState(stateRendererType: StateRendererType.popupLoadingState));
+
     (await _loginUseCase.execute(LoginUseCaseInput(
       loginObject.username,
       loginObject.password,
@@ -48,11 +51,13 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
         .fold(
       (failure) => {
         // left -> failure
-        print(failure.message)
+        inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message))
       },
       (data) => {
         // right -> success (data)
-        print(data.customer?.name)
+        inputState.add(ContentState()),
+
+        // navigate to main screen after login
       },
     );
   }
