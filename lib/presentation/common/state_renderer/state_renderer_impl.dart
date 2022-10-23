@@ -78,27 +78,36 @@ extension FlowStateExtension on FlowState {
     switch (runtimeType) {
       case LoadingState:
         if (getStateRendererType() == StateRendererType.popupLoadingState) {
-          // showing popup dialog
           showPopup(context, getStateRendererType(), getMessage());
-
-          // return content ui of the screen
           return contentScreenWidget;
         } else {
-          // StateRendererType.fullScreenLoadingState
           return StateRenderer(
             stateRendererType: getStateRendererType(),
             message: getMessage(),
-            retryAction: () { },
+            retryAction: () {},
           );
         }
       case ErrorState:
-        break;
+        if (getStateRendererType() == StateRendererType.popupErrorState) {
+          showPopup(context, getStateRendererType(), getMessage());
+          return contentScreenWidget;
+        } else {
+          return StateRenderer(
+            stateRendererType: getStateRendererType(),
+            message: getMessage(),
+            retryAction: () {},
+          );
+        }
       case ContentState:
-        break;
+        return contentScreenWidget;
       case EmptyState:
-        break;
+        return StateRenderer(
+          stateRendererType: getStateRendererType(),
+          message: getMessage(),
+          retryAction: retryAction,
+        );
       default:
-        break;
+        return contentScreenWidget;
     }
   }
 
