@@ -88,6 +88,7 @@ extension FlowStateExtension on FlowState {
           );
         }
       case ErrorState:
+        dismissDialog(context);
         if (getStateRendererType() == StateRendererType.popupErrorState) {
           showPopup(context, getStateRendererType(), getMessage());
           return contentScreenWidget;
@@ -99,6 +100,7 @@ extension FlowStateExtension on FlowState {
           );
         }
       case ContentState:
+        dismissDialog(context);
         return contentScreenWidget;
       case EmptyState:
         return StateRenderer(
@@ -110,6 +112,14 @@ extension FlowStateExtension on FlowState {
         return contentScreenWidget;
     }
   }
+
+  dismissDialog(BuildContext context) {
+    if (_isCurrentDialogShowing(context)) {
+      Navigator.of(context, rootNavigator: true).pop(true);
+    }
+  }
+
+  bool _isCurrentDialogShowing(BuildContext context) => ModalRoute.of(context)?.isCurrent != true;
 
   showPopup(
     BuildContext context,
