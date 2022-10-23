@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import 'package:flutter_clean_mvvm/data/network/failure.dart';
@@ -40,10 +41,10 @@ class StateRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return _getStateWidget(context);
   }
 
-  Widget? _getStateWidget() {
+  Widget _getStateWidget( BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
         // TODO: Handle this case.
@@ -60,7 +61,7 @@ class StateRenderer extends StatelessWidget {
         return _getItemsInColumn(children: [
           _getAnimatedImage(),
           _getMessage(failure.message),
-          _getRetryButton(AppStrings.retryAgain),
+          _getRetryButton(AppStrings.retryAgain, context),
         ]);
       case StateRendererType.contentScreenState:
         // TODO: Handle this case.
@@ -83,18 +84,36 @@ class StateRenderer extends StatelessWidget {
   }
 
   Widget _getMessage(String message) {
-    return Text(message,
-        style: getMediumStyle(
-          color: ColorManager.black,
-          fontSize: FontSize.s16,
-        ));
+    return Center(
+      child: Padding(
+        padding:  const EdgeInsets.all(AppPadding.p18),
+        child: Text(message,
+            style: getMediumStyle(
+              color: ColorManager.black,
+              fontSize: FontSize.s16,
+            )),
+      ),
+    );
   }
   
-  Widget _getRetryButton(String buttonTitle)
-  {
-    return ElevatedButton(
-      onPressed: (){},
-      child: Text(buttonTitle),
+  Widget _getRetryButton(String buttonTitle, BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.p18),
+        child: SizedBox(
+        width: AppSize.s180,
+          child: ElevatedButton(
+            onPressed: (){
+              if(stateRendererType == StateRendererType.fullScreenErrorState){
+                retryAction.call(); // call API function again
+              } else {
+                Navigator.of(context).pop(); // dismiss dialog
+              }
+            },
+            child: Text(buttonTitle),
+          ),
+        ),
+      ),
     );
   }
 
