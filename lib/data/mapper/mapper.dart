@@ -4,15 +4,15 @@ import 'package:flutter_clean_mvvm/data/responses/responses.dart';
 import 'package:flutter_clean_mvvm/domain/model/model.dart';
 import '../../app/extensions.dart';
 
-const empty = '';
-const zero = 0;
+const emptyString = '';
+const zeroInt = 0;
 
 extension CustomerResponseMapper on CustomerResponse? {
   Customer toDomain() {
     return Customer(
-      this?.id?.orEmpty() ?? empty,
-      this?.name?.orEmpty() ?? empty,
-      this?.numOfNotifications?.orZero() ?? zero,
+      this?.id?.orEmpty() ?? emptyString,
+      this?.name?.orEmpty() ?? emptyString,
+      this?.numOfNotifications?.orZero() ?? zeroInt,
     );
   }
 }
@@ -20,9 +20,9 @@ extension CustomerResponseMapper on CustomerResponse? {
 extension ContactsResponseMapper on ContactsResponse? {
   Contacts toDomain() {
     return Contacts(
-      this?.email?.orEmpty() ?? empty,
-      this?.phone?.orEmpty() ?? empty,
-      this?.link?.orEmpty() ?? empty,
+      this?.email?.orEmpty() ?? emptyString,
+      this?.phone?.orEmpty() ?? emptyString,
+      this?.link?.orEmpty() ?? emptyString,
     );
   }
 }
