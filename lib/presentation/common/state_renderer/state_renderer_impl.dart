@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
@@ -77,7 +77,20 @@ extension FlowStateExtension on FlowState {
   ) {
     switch (runtimeType) {
       case LoadingState:
-        break;
+        if (getStateRendererType() == StateRendererType.popupLoadingState) {
+          // showing popup dialog
+          showPopup(context, getStateRendererType(), getMessage());
+
+          // return content ui of the screen
+          return contentScreenWidget;
+        } else {
+          // StateRendererType.fullScreenLoadingState
+          return StateRenderer(
+            stateRendererType: getStateRendererType(),
+            message: getMessage(),
+            retryAction: () { },
+          );
+        }
       case ErrorState:
         break;
       case ContentState:
@@ -87,5 +100,20 @@ extension FlowStateExtension on FlowState {
       default:
         break;
     }
+  }
+
+  showPopup(
+    BuildContext context,
+    StateRendererType stateRendererType,
+    String message,
+  ) {
+    WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
+          context: context,
+          builder: (BuildContext context) => StateRenderer(
+            stateRendererType: stateRendererType,
+            message: message,
+            retryAction: () {},
+          ),
+        ));
   }
 }
