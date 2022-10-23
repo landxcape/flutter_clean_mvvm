@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewModelOutputs {
   final StreamController _usernameStreamController = StreamController<String>.broadcast();
@@ -25,7 +26,8 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   @override
   void start() {
-    // TODO: implement start
+    // view tells state renderer to show content of the screen
+    inputState.add(ContentState());
   }
 
   @override
