@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import 'package:flutter_clean_mvvm/data/network/failure.dart';
@@ -24,20 +23,18 @@ enum StateRendererType {
 
 class StateRenderer extends StatelessWidget {
   final StateRendererType stateRendererType;
-  final Failure failure;
   final String message;
   final String title;
   final Function retryAction;
 
-  StateRenderer({
+  const StateRenderer({
     Key? key,
     required this.stateRendererType,
     Failure? failure,
     String? message,
     String? title,
     required this.retryAction,
-  })  : failure = failure ?? DefaultFailure(),
-        message = message ?? AppStrings.loading,
+  })  : message = message ?? AppStrings.loading,
         title = title ?? emptyString,
         super(key: key);
 
@@ -46,12 +43,11 @@ class StateRenderer extends StatelessWidget {
     return _getStateWidget(context);
   }
 
-  Widget _getStateWidget( BuildContext context) {
+  Widget _getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
         return _getPopupDialog(context, children: [
           _getAnimatedImage(JsonAssets.loading),
-          
         ]);
       case StateRendererType.popupErrorState:
         return _getPopupDialog(context, children: [
@@ -67,7 +63,7 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.fullScreenErrorState:
         return _getItemsInColumn(children: [
           _getAnimatedImage(JsonAssets.error),
-          _getMessage(failure.message),
+          _getMessage(message),
           _getRetryButton(AppStrings.retryAgain, context),
         ]);
       case StateRendererType.contentScreenState:
@@ -129,7 +125,7 @@ class StateRenderer extends StatelessWidget {
   Widget _getMessage(String message) {
     return Center(
       child: Padding(
-        padding:  const EdgeInsets.all(AppPadding.p18),
+        padding: const EdgeInsets.all(AppPadding.p18),
         child: Text(message,
             style: getMediumStyle(
               color: ColorManager.black,
@@ -138,16 +134,16 @@ class StateRenderer extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _getRetryButton(String buttonTitle, BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.p18),
         child: SizedBox(
-        width: AppSize.s180,
+          width: AppSize.s180,
           child: ElevatedButton(
-            onPressed: (){
-              if(stateRendererType == StateRendererType.fullScreenErrorState){
+            onPressed: () {
+              if (stateRendererType == StateRendererType.fullScreenErrorState) {
                 retryAction.call(); // call API function again
               } else {
                 Navigator.of(context).pop(); // dismiss dialog
