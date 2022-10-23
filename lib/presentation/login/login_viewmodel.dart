@@ -52,16 +52,18 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
       loginObject.password,
     )))
         .fold(
-      (failure) => {
+      (failure) {
+        print('-------------------failure----------------------');
         // left -> failure
-        inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message))
+        inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message));
       },
-      (data) => {
+      (data) {
+        print('-------------------success----------------------');
         // right -> success (data)
-        inputState.add(ContentState()),
+        inputState.add(ContentState());
 
         // navigate to main screen after login
-        isUserLoggedInSuccessfullyStreamController.add(true),
+        isUserLoggedInSuccessfullyStreamController.add(true);
       },
     );
   }

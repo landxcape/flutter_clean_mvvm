@@ -21,8 +21,10 @@ class RepositoryImpl extends Repository {
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest) async {
     if (await _networkInfo.isConnected) {
       try {
-        // it is safe to call api
+        print('-----------------------------------response--------------------------------');
         final response = await _remoteDataSource.login(loginRequest);
+        // it is safe to call api
+        print(response);
 
         if (response.status == ApiInternalStatus.success) {
           // success

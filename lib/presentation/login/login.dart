@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_clean_mvvm/app/app_prefs.dart';
 import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
@@ -19,6 +20,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final LoginViewModel _viewModel = instance<LoginViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -31,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
     _passwordController.addListener(() => _viewModel.setPassword(_passwordController.text));
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((isSuccessfullyLoggedIn) {
       // navigate to main screen
-
+      _appPreferences.setIsUserLoggedIn();
       SchedulerBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
       });
