@@ -44,6 +44,7 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   json_annotation: ^4.7.0
   json_serializable: ^6.5.3
+  lottie: ^1.4.3
   pretty_dio_logger: ^1.2.0-beta-1
   retrofit: ^3.3.1
   retrofit_generator: ^4.2.0
@@ -74,6 +75,10 @@ flutter:
     - assets/images/right_arrow_ic.svg
     - assets/images/hollow_circle_ic.svg
     - assets/images/solid_circle_ic.svg
+    - assets/json/loading.json
+    - assets/json/error.json
+    - assets/json/empty.json
+    - assets/json/success.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
