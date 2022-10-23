@@ -47,11 +47,16 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget( BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-        // TODO: Handle this case.
-        break;
+        return _getPopupDialog(context, children: [
+          _getAnimatedImage(),
+          
+        ]);
       case StateRendererType.popupErrorState:
-        // TODO: Handle this case.
-        break;
+        return _getPopupDialog(context, children: [
+          _getAnimatedImage(),
+          _getMessage(message),
+          _getRetryButton(AppStrings.ok, context),
+        ]);
       case StateRendererType.fullScreenLoadingState:
         return _getItemsInColumn(children: [
           _getAnimatedImage(),
@@ -64,19 +69,55 @@ class StateRenderer extends StatelessWidget {
           _getRetryButton(AppStrings.retryAgain, context),
         ]);
       case StateRendererType.contentScreenState:
-        // TODO: Handle this case.
-        break;
+        return Container();
       case StateRendererType.emptyScreenState:
-        // TODO: Handle this case.
-        break;
+        return _getItemsInColumn(children: [
+          _getAnimatedImage(),
+          _getMessage(message),
+        ]);
       default:
         return Container();
     }
-    return null;
+  }
+
+  Widget _getPopupDialog(BuildContext context, {required List<Widget> children}) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSize.s14),
+      ),
+      elevation: AppSize.s1_5,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: ColorManager.white,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(AppSize.s14),
+          boxShadow: const [
+            BoxShadow(
+                color: Colors.black26,
+                blurRadius: AppSize.s12,
+                offset: Offset(
+                  AppSize.s0,
+                  AppSize.s12,
+                )),
+          ],
+        ),
+        child: _getDialogContent(context, children),
+      ),
+    );
+  }
+
+  Widget _getDialogContent(BuildContext context, List<Widget> children) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: children,
+    );
   }
 
   Widget _getAnimatedImage() {
-    return  SizedBox(
+    return SizedBox(
       height: AppSize.s100,
       width: AppSize.s100,
       child: , // json image
@@ -122,7 +163,7 @@ class StateRenderer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [],
+        children: children,
       ),
     );
   }

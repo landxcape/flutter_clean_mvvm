@@ -23,4 +23,5 @@ class AppStrings {
   static const String loading = 'Loading...';
 
   static const String retryAgain = 'Retry Again';
+  static const String ok = 'Ok';
 }
