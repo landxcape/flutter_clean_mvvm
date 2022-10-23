@@ -84,7 +84,7 @@ extension FlowStateExtension on FlowState {
           return StateRenderer(
             stateRendererType: getStateRendererType(),
             message: getMessage(),
-            retryAction: () {},
+            retryAction: retryAction,
           );
         }
       case ErrorState:
@@ -96,7 +96,7 @@ extension FlowStateExtension on FlowState {
           return StateRenderer(
             stateRendererType: getStateRendererType(),
             message: getMessage(),
-            retryAction: () {},
+            retryAction: retryAction,
           );
         }
       case ContentState:

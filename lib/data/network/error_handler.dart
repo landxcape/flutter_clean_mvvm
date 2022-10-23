@@ -123,7 +123,7 @@ class ResponseMessage {
   static const String badRequest = 'bad request, try again later'; // failure, api rejected the request
   static const String forbidden = 'forbidden request, try again later'; // failure, api rejected the request
   static const String unauthorised = 'user is unauthorized, try again later'; // user is not authorized
-  static const String notFound = 'Url is not found, try again later'; // failure, api url incorrect, not found
+  static const String notFound = 'Url not found, try again later'; // failure, api url incorrect, not found
   static const String internalServerError = 'something is wrong, try again later'; // failure, crash happened in server side
 
   // local status codes
