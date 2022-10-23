@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
@@ -66,4 +67,25 @@ class EmptyState extends FlowState {
 
   @override
   StateRendererType getStateRendererType() => StateRendererType.emptyScreenState;
+}
+
+extension FlowStateExtension on FlowState {
+  Widget getScreenWidget(
+    BuildContext context,
+    Widget contentScreenWidget,
+    Function retryAction,
+  ) {
+    switch (runtimeType) {
+      case LoadingState:
+        break;
+      case ErrorState:
+        break;
+      case ContentState:
+        break;
+      case EmptyState:
+        break;
+      default:
+        break;
+    }
+  }
 }
