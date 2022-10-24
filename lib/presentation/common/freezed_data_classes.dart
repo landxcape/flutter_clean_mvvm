@@ -13,7 +13,8 @@ class LoginObject with _$LoginObject {
 @Freezed()
 class RegisterObject with _$RegisterObject {
   const factory RegisterObject(
-    String countryMobileCode,
+    String countryCode,
+    String mobileNumber,
     String username,
     String email,
     String password,
