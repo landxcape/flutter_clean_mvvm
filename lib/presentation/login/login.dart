@@ -89,7 +89,7 @@ class _LoginViewState extends State<LoginView> {
                     decoration: InputDecoration(
                       hintText: AppStrings.username,
                       labelText: AppStrings.username,
-                      errorText: (snapshot.data ?? true) ? null : AppStrings.usernameError,
+                      errorText: (snapshot.data ?? true) ? null : AppStrings.invalidUsername,
                     ),
                   );
                 },
@@ -107,7 +107,7 @@ class _LoginViewState extends State<LoginView> {
                     decoration: InputDecoration(
                       hintText: AppStrings.password,
                       labelText: AppStrings.password,
-                      errorText: (snapshot.data ?? true) ? null : AppStrings.passwordError,
+                      errorText: (snapshot.data ?? true) ? null : AppStrings.invalidPassword,
                     ),
                   );
                 },

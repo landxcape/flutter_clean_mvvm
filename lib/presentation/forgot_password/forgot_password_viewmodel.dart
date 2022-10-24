@@ -5,6 +5,8 @@ import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 
+import '../../app/functions.dart';
+
 class ForgotPasswordViewModel extends BaseViewModel with ForgotPasswordViewModelInput, ForgotPasswordViewModelOutput {
   final StreamController _emailStreamController = StreamController<String>.broadcast();
   final StreamController _isAllInputValidStreamController = StreamController<void>.broadcast();
@@ -59,19 +61,15 @@ class ForgotPasswordViewModel extends BaseViewModel with ForgotPasswordViewModel
   Stream<bool> get outputIsAllInputValid => _isAllInputValidStreamController.stream.map((isAllInputValid) => _isAllInputValid());
 
   @override
-  Stream<bool> get outputIsEmailValid => _emailStreamController.stream.map((email) => _isEmailValid(email));
+  Stream<bool> get outputIsEmailValid => _emailStreamController.stream.map((email) => isEmailValid(email));
 
   // pirvate functions
   _validate() {
     inputIsAllInputValid.add(null);
   }
 
-  _isEmailValid(String email) {
-    return email.isNotEmpty;
-  }
-
   _isAllInputValid() {
-    return _isEmailValid(email);
+    return isEmailValid(email);
   }
 }
 

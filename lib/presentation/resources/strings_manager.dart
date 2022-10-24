@@ -12,20 +12,23 @@ class AppStrings {
   static const String onBoardingSubTitle4 = 'Tut app is an awesome flutter application using clean architecture #4';
 
   static const String skip = 'Skip';
-  static const String username = 'Username';
-  static const String usernameError = 'Invalid Username';
-  static const String password = 'Passowrd';
-  static const String passwordError = 'Invalid Password';
-  static const String login = 'Login';
-  static const String forgetPassword = 'Forget Password';
-  static const String registerText = 'Not a member? Sign up';
+
   static const String emailHint = 'Email';
   static const String invalidEmail = 'Invalid Email';
+  static const String username = 'Username';
+  static const String invalidUsername = 'Invalid Username';
+  static const String password = 'Passowrd';
+  static const String invalidPassword = 'Invalid Password';
+  static const String invalidMobileNumber = 'Invalid Mobile Number';
+
+  static const String login = 'Login';
+  static const String forgetPassword = 'Forget Password';
   static const String resetPassword = 'Reset Password';
+  static const String registerText = 'Not a member? Sign up';
+
   static const String success = 'Success';
-
   static const String loading = 'Loading...';
-
   static const String retryAgain = 'Retry Again';
+
   static const String ok = 'Ok';
 }
