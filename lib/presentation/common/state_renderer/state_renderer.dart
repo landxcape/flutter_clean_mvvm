@@ -18,7 +18,7 @@ enum StateRendererType {
   // FULL SCREEN STATES
   fullScreenLoadingState,
   fullScreenErrorState,
-  
+
   contentScreenState, // the ui of the screen
   emptyScreenState, // empty view when no data
 }
@@ -60,6 +60,7 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.popupSuccessState:
         return _getPopupDialog(context, children: [
           _getAnimatedImage(JsonAssets.success),
+          _getTitle(title),
           _getMessage(message),
           _getRetryButton(AppStrings.ok, context),
         ]);
@@ -130,15 +131,33 @@ class StateRenderer extends StatelessWidget {
     );
   }
 
+  Widget _getTitle(String title) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppPadding.p18),
+        child: Text(
+          title,
+          style: getBoldStyle(
+            color: ColorManager.primary,
+            fontSize: FontSize.s20,
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _getMessage(String message) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.p18),
-        child: Text(message,
-            style: getMediumStyle(
-              color: ColorManager.black,
-              fontSize: FontSize.s16,
-            )),
+        child: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: getMediumStyle(
+            color: ColorManager.black,
+            fontSize: FontSize.s16,
+          ),
+        ),
       ),
     );
   }
