@@ -13,7 +13,9 @@ import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 
 import '../data/repository/repository_impl.dart';
+import '../domain/usecase/register_usecase.dart';
 import '../presentation/forgot_password/forgot_password_viewmodel.dart';
+import '../presentation/register/register_viewmodel.dart';
 
 final instance = GetIt.instance;
 
@@ -54,5 +56,12 @@ initForgetPasswordModule() {
   if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
     instance.registerFactory<ForgotPasswordUseCase>(() => ForgotPasswordUseCase(instance()));
     instance.registerFactory<ForgotPasswordViewModel>(() => ForgotPasswordViewModel(instance()));
+  }
+}
+
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance.registerFactory<RegisterUseCase>(() => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(() => RegisterViewModel(instance()));
   }
 }
