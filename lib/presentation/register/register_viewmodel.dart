@@ -14,7 +14,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _profilePictureStreamController = StreamController<File>.broadcast();
 
-  final StreamController _isAllInputsValid = StreamController<void>.broadcast();
+  final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
 
   final RegisterUseCase _registerUseCase;
 
@@ -33,7 +33,43 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
     _emailStreamController.close();
     _passwordStreamController.close();
     _profilePictureStreamController.close();
-    _isAllInputsValid.close();
+    _isAllInputsValidStreamController.close();
+  }
+
+  @override
+  setUsername(String username) {
+    registerViewObject = registerViewObject.copyWith(username: _isUsernameValid(username) ? username : '');
+    _validate();
+  }
+
+  @override
+  setMobileNumber(String mobileNumber) {
+    registerViewObject = registerViewObject.copyWith(mobileNumber: _isMobileNumberValid(mobileNumber) ? mobileNumber : '');
+    _validate();
+  }
+
+  @override
+  setCountryCode(String countryCode) {
+    registerViewObject = registerViewObject.copyWith(countryCode: _isCountryCodeValid(countryCode) ? countryCode : '');
+    _validate();
+  }
+
+  @override
+  setEmail(String email) {
+    registerViewObject = registerViewObject.copyWith(email: isEmailValid(email) ? email : '');
+    _validate();
+  }
+
+  @override
+  setPassword(String password) {
+    registerViewObject = registerViewObject.copyWith(password: _isPasswordValid(password) ? password : '');
+    _validate();
+  }
+
+  @override
+  setProfilePicture(File profilePicture) {
+    registerViewObject = registerViewObject.copyWith(profilePicture: _isProfilePictureValid(profilePicture) ? profilePicture.path : '');
+    _validate();
   }
 
   @override
@@ -50,6 +86,9 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   Sink get inputUsername => _usernameStreamController.sink;
+
+  @override
+  Sink get inputAllInputsValid => _isAllInputsValidStreamController.sink;
 
   // outputs
   @override
@@ -76,6 +115,9 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   Stream<File> get outputIsProfilePictureValid => _profilePictureStreamController.stream.map((file) => file);
 
   @override
+  Stream<bool> get outputIsAllInputsValid => _isAllInputsValidStreamController.stream.map((_) => _isAllInputsValid());
+
+  @override
   register() {
     // TODO: implement register
     throw UnimplementedError();
@@ -87,22 +129,15 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   bool _isPasswordValid(String password) => password.length >= 8;
   bool _isCountryCodeValid(String countryCode) => countryCode.isNotEmpty;
   bool _isProfilePictureValid(File file) => file.path.isNotEmpty;
+  bool _isAllInputsValid() =>
+      registerViewObject.profilePicture.isNotEmpty &&
+      registerViewObject.email.isNotEmpty &&
+      registerViewObject.password.isNotEmpty &&
+      registerViewObject.mobileNumber.isNotEmpty &&
+      registerViewObject.username.isNotEmpty &&
+      registerViewObject.countryCode.isNotEmpty;
 
-  @override
-  setUsername(String username) => registerViewObject = registerViewObject.copyWith(username: _isUsernameValid(username) ? username : '');
-  @override
-  setMobileNumber(String mobileNumber) =>
-      registerViewObject = registerViewObject.copyWith(mobileNumber: _isMobileNumberValid(mobileNumber) ? mobileNumber : '');
-  @override
-  setCountryCode(String countryCode) =>
-      registerViewObject = registerViewObject.copyWith(countryCode: _isCountryCodeValid(countryCode) ? countryCode : '');
-  @override
-  setEmail(String email) => registerViewObject = registerViewObject.copyWith(email: isEmailValid(email) ? email : '');
-  @override
-  setPassword(String password) => registerViewObject = registerViewObject.copyWith(password: _isPasswordValid(password) ? password : '');
-  @override
-  setProfilePicture(File profilePicture) =>
-      registerViewObject = registerViewObject.copyWith(profilePicture: _isProfilePictureValid(profilePicture) ? profilePicture.path : '');
+  _validate() => inputAllInputsValid.add(null);
 }
 
 abstract class RegisterViewModelInput {
@@ -124,6 +159,8 @@ abstract class RegisterViewModelInput {
   Sink get inputPassword;
 
   Sink get inputProfilePicutre;
+
+  Sink get inputAllInputsValid;
 }
 
 abstract class RegisterViewModelOutput {
@@ -140,4 +177,6 @@ abstract class RegisterViewModelOutput {
   Stream<String?> get outputErrorPassword;
 
   Stream<File> get outputIsProfilePictureValid;
+
+  Stream<bool> get outputIsAllInputsValid;
 }
