@@ -23,7 +23,7 @@ abstract class AppServiceClient {
   );
 
   @POST('/customers/register')
-  Future<AuthenticationResponse> registerUser(
+  Future<AuthenticationResponse> register(
     @Field('country_mobile_code') String countryMobileCode,
     @Field('username') String username,
     @Field('email') String email,

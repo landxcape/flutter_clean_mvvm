@@ -77,7 +77,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<AuthenticationResponse> registerUser(
+  Future<AuthenticationResponse> register(
     countryMobileCode,
     username,
     email,
