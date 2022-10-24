@@ -4,6 +4,7 @@ import 'package:analyzer/file_system/file_system.dart';
 import 'package:flutter_clean_mvvm/app/functions.dart';
 import 'package:flutter_clean_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
+import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 
 class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, RegisterViewModelOutput {
@@ -16,6 +17,9 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   final StreamController _isAllInputsValid = StreamController<void>.broadcast();
 
   final RegisterUseCase _registerUseCase;
+
+  RegisterObject registerViewObject = const RegisterObject('', '', '', '', '');
+  
   RegisterViewModel(this._registerUseCase);
 
   // inputs
