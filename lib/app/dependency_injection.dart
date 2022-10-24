@@ -1,3 +1,4 @@
+import 'package:flutter_clean_mvvm/domain/usecase/forgot_password_usecase.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 
 import '../data/repository/repository_impl.dart';
+import '../presentation/forgot_password/forgot_password_viewmodel.dart';
 
 final instance = GetIt.instance;
 
@@ -45,5 +47,12 @@ initLoginModule() {
   if (!GetIt.I.isRegistered<LoginUseCase>()) {
     instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+initForgetPasswordModule() {
+  if (!GetIt.I.isRegistered<ForgotPasswordUseCase>()) {
+    instance.registerFactory<ForgotPasswordUseCase>(() => ForgotPasswordUseCase(instance()));
+    instance.registerFactory<ForgotPasswordViewModel>(() => ForgotPasswordViewModel(instance()));
   }
 }

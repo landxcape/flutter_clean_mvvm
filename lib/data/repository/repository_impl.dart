@@ -21,10 +21,8 @@ class RepositoryImpl extends Repository {
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest) async {
     if (await _networkInfo.isConnected) {
       try {
-        print('-----------------------------------response--------------------------------');
         final response = await _remoteDataSource.login(loginRequest);
         // it is safe to call api
-        print(response);
 
         if (response.status == ApiInternalStatus.success) {
           // success
@@ -35,7 +33,7 @@ class RepositoryImpl extends Repository {
           // return business loginc error
           // return either left
           return Left(Failure(
-            response.status ?? ApiInternalStatus.failure,
+            response.status ?? ResponseCode.defaultError,
             response.message ?? ResponseMessage.defaultError,
           ));
         }
@@ -44,7 +42,28 @@ class RepositoryImpl extends Repository {
       }
     } else {
       // return connection error
-      return Left(DataSource.internalServerError.getFailure());
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> forgotPassword(String email) async {
+    if (!(await _networkInfo.isConnected)) {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+    try {
+      final response = await _remoteDataSource.forgotPassword(email);
+
+      if (response.status == ApiInternalStatus.success) {
+        return Right(response.toDomain());
+      }
+
+      return Left(Failure(
+        response.status ?? ResponseCode.defaultError,
+        response.message ?? ResponseMessage.defaultError,
+      ));
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
     }
   }
 }

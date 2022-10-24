@@ -138,7 +138,7 @@ class _LoginViewState extends State<LoginView> {
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, Routes.forgetPasswordRoute);
+                    Navigator.pushNamed(context, Routes.forgetPasswordRoute);
                   },
                   child: Text(
                     AppStrings.forgetPassword,
@@ -148,7 +148,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, Routes.registerRoute);
+                    Navigator.pushNamed(context, Routes.registerRoute);
                   },
                   child: Text(
                     AppStrings.registerText,
