@@ -27,3 +27,33 @@ class RegisterViewModel extends BaseViewModel {
     _isAllInputsValid.close();
   }
 }
+
+abstract class RegisterViewModelInput {
+  register();
+
+  Sink get inputUsername;
+
+  Sink get inputMobileNumber;
+
+  Sink get inputEmail;
+
+  Sink get inputPassword;
+
+  Sink get inputProfilePicutre;
+}
+
+abstract class RegisterViewModelOutput {
+  Stream<bool> get outputIsUsernameValid;
+  Stream<String> get outputErrorUsername;
+
+  Stream<bool> get outputIsMobileNumberValid;
+  Stream<String> get outputErrorMobileNumber;
+
+  Stream<bool> get outputIsEmailValid;
+  Stream<String> get outputErrorEmail;
+
+  Stream<bool> get outputIsPasswordValid;
+  Stream<String> get outputErrorPassword;
+
+  Stream<File> get outputIsProfilePictureValid;
+}
