@@ -14,14 +14,14 @@ class LoginRequest {
 }
 
 class RegisterRequest {
-  String countryMobileCode;
+  String countryCode;
   String username;
   String email;
   String password;
   String profilePicture;
 
   RegisterRequest(
-    this.countryMobileCode,
+    this.countryCode,
     this.username,
     this.email,
     this.password,
