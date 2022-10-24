@@ -5,6 +5,8 @@ import 'package:flutter_clean_mvvm/app/functions.dart';
 import 'package:flutter_clean_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
+import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 
 class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, RegisterViewModelOutput {
@@ -24,7 +26,31 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   // inputs
   @override
-  void start() {}
+  void start() {
+    inputState.add(ContentState());
+  }
+
+  @override
+  register() async {
+    inputState.add(LoadingState(stateRendererType: StateRendererType.popupLoadingState));
+
+    (await _registerUseCase.execute(RegisterUseCaseInput(
+      registerViewObject.mobileNumber,
+      registerViewObject.countryCode,
+      registerViewObject.username,
+      registerViewObject.email,
+      registerViewObject.password,
+      registerViewObject.profilePicture,
+    )))
+        .fold(
+      (failure) {
+        inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message));
+      },
+      (data) {
+        inputState.add(ContentState());
+      },
+    );
+  }
 
   @override
   void dispose() {
@@ -116,12 +142,6 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   Stream<bool> get outputIsAllInputsValid => _isAllInputsValidStreamController.stream.map((_) => _isAllInputsValid());
-
-  @override
-  register() {
-    // TODO: implement register
-    throw UnimplementedError();
-  }
 
   // private methods
   bool _isUsernameValid(String username) => username.length >= 8;

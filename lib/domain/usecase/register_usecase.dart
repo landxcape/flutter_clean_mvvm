@@ -22,6 +22,7 @@ class RegisterUseCase implements BaseUseCase<RegisterUseCaseInput, Authenticatio
 }
 
 class RegisterUseCaseInput {
+  String mobileNumber;
   String countryCode;
   String username;
   String email;
@@ -29,6 +30,7 @@ class RegisterUseCaseInput {
   String profilePicture;
 
   RegisterUseCaseInput(
+    this.mobileNumber,
     this.countryCode,
     this.username,
     this.email,
