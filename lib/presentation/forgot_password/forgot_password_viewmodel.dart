@@ -30,8 +30,8 @@ class ForgotPasswordViewModel extends BaseViewModel with ForgotPasswordViewModel
     );
 
     (await _forgotPasswordUseCase.execute(email)).fold(
-      (failure) => ErrorState(StateRendererType.popupErrorState, failure.message),
-      (data) => inputState.add(ContentState()),
+      (failure) => inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message)),
+      (supportMessage) => inputState.add(SuccessState(supportMessage)),
     );
   }
 
