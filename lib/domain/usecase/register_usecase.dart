@@ -12,7 +12,7 @@ class RegisterUseCase implements BaseUseCase<RegisterUseCaseInput, Authenticatio
   @override
   Future<Either<Failure, Authentication>> execute(RegisterUseCaseInput input) async {
     return await _repository.register(RegisterRequest(
-      input.countryCode,
+      input.countryMobileCode,
       input.username,
       input.email,
       input.password,
@@ -22,14 +22,14 @@ class RegisterUseCase implements BaseUseCase<RegisterUseCaseInput, Authenticatio
 }
 
 class RegisterUseCaseInput {
-  String countryCode;
+  String countryMobileCode;
   String username;
   String email;
   String password;
   String profilePicture;
 
   RegisterUseCaseInput(
-    this.countryCode,
+    this.countryMobileCode,
     this.username,
     this.email,
     this.password,

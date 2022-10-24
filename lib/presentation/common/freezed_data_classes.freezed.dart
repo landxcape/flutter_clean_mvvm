@@ -152,8 +152,7 @@ abstract class _LoginObject implements LoginObject {
 
 /// @nodoc
 mixin _$RegisterObject {
-  String get countryCode => throw _privateConstructorUsedError;
-  String get mobileNumber => throw _privateConstructorUsedError;
+  String get countryMobileCode => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
@@ -171,7 +170,7 @@ abstract class $RegisterObjectCopyWith<$Res> {
       _$RegisterObjectCopyWithImpl<$Res, RegisterObject>;
   @useResult
   $Res call(
-      {String countryCode, String mobileNumber,
+      {String countryMobileCode,
       String username,
       String email,
       String password,
@@ -191,21 +190,16 @@ class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? countryCode = null,
-    Object? mobileNumber = null,
+    Object? countryMobileCode = null,
     Object? username = null,
     Object? email = null,
     Object? password = null,
     Object? profilePicture = null,
   }) {
     return _then(_value.copyWith(
-      countryCode: null == countryCode
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      mobileNumber: null == mobileNumber
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
+      countryMobileCode: null == countryMobileCode
+          ? _value.countryMobileCode
+          : countryMobileCode // ignore: cast_nullable_to_non_nullable
               as String,
       username: null == username
           ? _value.username
@@ -236,7 +230,7 @@ abstract class _$$_RegisterObjectCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String countryCode, String mobileNumber,
+      {String countryMobileCode,
       String username,
       String email,
       String password,
@@ -254,21 +248,16 @@ class __$$_RegisterObjectCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? countryCode = null,
-    Object? mobileNumber = null,
+    Object? countryMobileCode = null,
     Object? username = null,
     Object? email = null,
     Object? password = null,
     Object? profilePicture = null,
   }) {
     return _then(_$_RegisterObject(
-      null == countryCode
-          ? _value.countryCode
-          : countryCode // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == mobileNumber
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
+      null == countryMobileCode
+          ? _value.countryMobileCode
+          : countryMobileCode // ignore: cast_nullable_to_non_nullable
               as String,
       null == username
           ? _value.username
@@ -293,12 +282,11 @@ class __$$_RegisterObjectCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RegisterObject implements _RegisterObject {
-  const _$_RegisterObject(this.countryCode, this.mobileNumber, this.username, this.email, this.password, this.profilePicture);
+  const _$_RegisterObject(this.countryMobileCode, this.username, this.email,
+      this.password, this.profilePicture);
 
   @override
-  final String countryCode;
-  @override
-  final String mobileNumber;
+  final String countryMobileCode;
   @override
   final String username;
   @override
@@ -310,7 +298,7 @@ class _$_RegisterObject implements _RegisterObject {
 
   @override
   String toString() {
-    return 'RegisterObject(countryCode: $countryCode, mobileNumber: $mobileNumber, username: $username, email: $email, password: $password, profilePicture: $profilePicture)';
+    return 'RegisterObject(countryMobileCode: $countryMobileCode, username: $username, email: $email, password: $password, profilePicture: $profilePicture)';
   }
 
   @override
@@ -318,8 +306,8 @@ class _$_RegisterObject implements _RegisterObject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RegisterObject &&
-            (identical(other.countryCode, countryCode) || other.countryCode == countryCode) &&
-            (identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber) &&
+            (identical(other.countryMobileCode, countryMobileCode) ||
+                other.countryMobileCode == countryMobileCode) &&
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
@@ -330,7 +318,8 @@ class _$_RegisterObject implements _RegisterObject {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, countryCode, mobileNumber, username, email, password, profilePicture);
+  int get hashCode => Object.hash(runtimeType, countryMobileCode, username,
+      email, password, profilePicture);
 
   @JsonKey(ignore: true)
   @override
@@ -341,16 +330,14 @@ class _$_RegisterObject implements _RegisterObject {
 
 abstract class _RegisterObject implements RegisterObject {
   const factory _RegisterObject(
-      final String countryCode, final String mobileNumber,
+      final String countryMobileCode,
       final String username,
       final String email,
       final String password,
       final String profilePicture) = _$_RegisterObject;
 
   @override
-  String get countryCode;
-  @override
-  String get mobileNumber;
+  String get countryMobileCode;
   @override
   String get username;
   @override

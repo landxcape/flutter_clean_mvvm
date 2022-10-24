@@ -18,8 +18,8 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   final RegisterUseCase _registerUseCase;
 
-  RegisterObject registerViewObject = const RegisterObject('', '', '', '', '', '');
-
+  RegisterObject registerViewObject = const RegisterObject('', '', '', '', '');
+  
   RegisterViewModel(this._registerUseCase);
 
   // inputs
@@ -85,35 +85,10 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   bool _isUsernameValid(String username) => username.length >= 8;
   bool _isMobileNumberValid(String mobileNumber) => mobileNumber.length == 10;
   bool _isPasswordValid(String password) => password.length >= 8;
-  bool _isCountryCodeValid(String countryCode) => countryCode.isNotEmpty;
-  bool _isProfilePictureValid(File file) => file.path.isNotEmpty;
-
-  @override
-  setUsername(String username) => registerViewObject = registerViewObject.copyWith(username: _isUsernameValid(username) ? username : '');
-  @override
-  setMobileNumber(String mobileNumber) =>
-      registerViewObject = registerViewObject.copyWith(mobileNumber: _isMobileNumberValid(mobileNumber) ? mobileNumber : '');
-  @override
-  setCountryCode(String countryCode) =>
-      registerViewObject = registerViewObject.copyWith(countryCode: _isCountryCodeValid(countryCode) ? countryCode : '');
-  @override
-  setEmail(String email) => registerViewObject = registerViewObject.copyWith(email: isEmailValid(email) ? email : '');
-  @override
-  setPassword(String password) => registerViewObject = registerViewObject.copyWith(password: _isPasswordValid(password) ? password : '');
-  @override
-  setProfilePicture(File profilePicture) =>
-      registerViewObject = registerViewObject.copyWith(profilePicture: _isProfilePictureValid(profilePicture) ? profilePicture.path : '');
 }
 
 abstract class RegisterViewModelInput {
   register();
-
-  setUsername(String username);
-  setMobileNumber(String mobileNumber);
-  setCountryCode(String countryCode);
-  setEmail(String email);
-  setPassword(String password);
-  setProfilePicture(File profilePicture);
 
   Sink get inputUsername;
 

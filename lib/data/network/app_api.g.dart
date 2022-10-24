@@ -78,7 +78,7 @@ class _AppServiceClient implements AppServiceClient {
 
   @override
   Future<AuthenticationResponse> register(
-    countryCode,
+    countryMobileCode,
     username,
     email,
     password,
@@ -88,7 +88,7 @@ class _AppServiceClient implements AppServiceClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = {
-      'country_code': countryCode,
+      'country_mobile_code': countryMobileCode,
       'username': username,
       'email': email,
       'password': password,
