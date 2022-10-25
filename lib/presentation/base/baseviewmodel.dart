@@ -1,5 +1,7 @@
+// Dart imports:
 import 'dart:async';
 
+// Project imports:
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 
 abstract class BaseViewModel extends BaseViewModelInputs with BaseViewModelOutputs {

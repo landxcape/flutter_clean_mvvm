@@ -1,8 +1,13 @@
+// Dart imports:
 import 'dart:io';
 
-import 'package:device_info_plus/device_info_plus.dart';
+// Flutter imports:
 import 'package:flutter/services.dart';
 
+// Package imports:
+import 'package:device_info_plus/device_info_plus.dart';
+
+// Project imports:
 import '../domain/model/model.dart';
 
 Future<DeviceInfo> getDeviceDetails() async {

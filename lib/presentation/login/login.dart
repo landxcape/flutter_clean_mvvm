@@ -1,5 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/app/app_prefs.dart';
 import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
 import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
@@ -8,7 +11,6 @@ import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
-
 import '../common/state_renderer/state_renderer_impl.dart';
 
 class LoginView extends StatefulWidget {
@@ -117,7 +119,7 @@ class _LoginViewState extends State<LoginView> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: StreamBuilder<bool>(
-                  stream: _viewModel.outputIsAllInputValid,
+                  stream: _viewModel.outputIsAllInputsValid,
                   builder: (context, snapshot) {
                     return SizedBox(
                       width: double.infinity,
@@ -163,4 +165,5 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
+  
 }

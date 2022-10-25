@@ -1,6 +1,9 @@
+// Package imports:
+import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/app/functions.dart';
 import 'package:flutter_clean_mvvm/data/network/failure.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_clean_mvvm/data/request/request.dart';
 import 'package:flutter_clean_mvvm/domain/model/model.dart';
 import 'package:flutter_clean_mvvm/domain/repository/repository.dart';

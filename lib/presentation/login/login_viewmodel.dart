@@ -1,5 +1,7 @@
+// Dart imports:
 import 'dart:async';
 
+// Project imports:
 import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
@@ -14,7 +16,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>();
 
-  LoginObject loginObject = LoginObject('', '');
+  LoginObject loginObject = const LoginObject('', '');
 
   final LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
@@ -90,7 +92,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
   Stream<bool> get outputIsUsernameValid => _usernameStreamController.stream.map((username) => _isUsernameValid(username));
 
   @override
-  Stream<bool> get outputIsAllInputValid => _isAllInputsValidStreamController.stream.map((_) => _isAllInputsValid());
+  Stream<bool> get outputIsAllInputsValid => _isAllInputsValidStreamController.stream.map((_) => _isAllInputsValid());
 
 // private functions
   _validate() {
@@ -125,5 +127,5 @@ abstract class LoginViewModelInputs {
 abstract class LoginViewModelOutputs {
   Stream<bool> get outputIsUsernameValid;
   Stream<bool> get outputIsPasswordValid;
-  Stream<bool> get outputIsAllInputValid;
+  Stream<bool> get outputIsAllInputsValid;
 }

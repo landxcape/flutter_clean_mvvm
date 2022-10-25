@@ -1,6 +1,10 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/app/app_prefs.dart';
 import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';

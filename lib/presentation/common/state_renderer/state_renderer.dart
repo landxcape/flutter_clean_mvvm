@@ -1,4 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:lottie/lottie.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import 'package:flutter_clean_mvvm/data/network/failure.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
@@ -7,7 +13,6 @@ import 'package:flutter_clean_mvvm/presentation/resources/font_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/styles_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
-import 'package:lottie/lottie.dart';
 
 enum StateRendererType {
   // POPUP STATES

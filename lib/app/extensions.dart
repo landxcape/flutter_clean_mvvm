@@ -1,4 +1,6 @@
 // extension on String
+
+// Project imports:
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 
 extension NonNullString on String? {

@@ -1,5 +1,8 @@
-import 'package:flutter_clean_mvvm/data/network/failure.dart';
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
+import 'package:flutter_clean_mvvm/data/network/failure.dart';
 import 'package:flutter_clean_mvvm/domain/repository/repository.dart';
 import 'package:flutter_clean_mvvm/domain/usecase/base_usecase.dart';
 

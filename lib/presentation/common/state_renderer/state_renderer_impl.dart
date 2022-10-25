@@ -1,5 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';

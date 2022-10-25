@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'color_manager.dart';
 import 'font_manager.dart';
 import 'styles_manager.dart';

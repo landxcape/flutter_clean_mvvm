@@ -1,6 +1,10 @@
+// Dart imports:
 import 'dart:async';
 
+// Package imports:
 import 'package:analyzer/file_system/file_system.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/app/functions.dart';
 import 'package:flutter_clean_mvvm/domain/usecase/register_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';

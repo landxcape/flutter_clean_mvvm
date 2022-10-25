@@ -1,8 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_clean_mvvm/presentation/forgot_password/forgot_password_viewmodel.dart';
-
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/strings_manager.dart';
@@ -17,14 +19,14 @@ class ForgotPasswordView extends StatefulWidget {
 
 class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailTextEditingController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   final ForgotPasswordViewModel _viewModel = instance<ForgotPasswordViewModel>();
 
   bind() {
     _viewModel.start();
-    _emailTextEditingController.addListener(() {
-      _viewModel.setEmail(_emailTextEditingController.text);
+    _emailController.addListener(() {
+      _viewModel.setEmail(_emailController.text);
     });
   }
 
@@ -76,7 +78,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   builder: (context, snapshot) {
                     return TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      controller: _emailTextEditingController,
+                      controller: _emailController,
                       decoration: InputDecoration(
                           hintText: AppStrings.emailHint,
                           labelText: AppStrings.emailHint,

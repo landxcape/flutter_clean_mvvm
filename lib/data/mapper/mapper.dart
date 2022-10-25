@@ -1,5 +1,6 @@
 // to convert the response into a non nullable object (model)
 
+// Project imports:
 import 'package:flutter_clean_mvvm/data/responses/responses.dart';
 import 'package:flutter_clean_mvvm/domain/model/model.dart';
 import '../../app/extensions.dart';
