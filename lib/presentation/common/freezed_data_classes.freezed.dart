@@ -20,22 +20,18 @@ mixin _$LoginObject {
   String get password => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LoginObjectCopyWith<LoginObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $LoginObjectCopyWith<LoginObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LoginObjectCopyWith<$Res> {
-  factory $LoginObjectCopyWith(
-          LoginObject value, $Res Function(LoginObject) then) =
-      _$LoginObjectCopyWithImpl<$Res, LoginObject>;
+  factory $LoginObjectCopyWith(LoginObject value, $Res Function(LoginObject) then) = _$LoginObjectCopyWithImpl<$Res, LoginObject>;
   @useResult
   $Res call({String username, String password});
 }
 
 /// @nodoc
-class _$LoginObjectCopyWithImpl<$Res, $Val extends LoginObject>
-    implements $LoginObjectCopyWith<$Res> {
+class _$LoginObjectCopyWithImpl<$Res, $Val extends LoginObject> implements $LoginObjectCopyWith<$Res> {
   _$LoginObjectCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -63,23 +59,16 @@ class _$LoginObjectCopyWithImpl<$Res, $Val extends LoginObject>
 }
 
 /// @nodoc
-abstract class _$$_LoginObjectCopyWith<$Res>
-    implements $LoginObjectCopyWith<$Res> {
-  factory _$$_LoginObjectCopyWith(
-          _$_LoginObject value, $Res Function(_$_LoginObject) then) =
-      __$$_LoginObjectCopyWithImpl<$Res>;
+abstract class _$$_LoginObjectCopyWith<$Res> implements $LoginObjectCopyWith<$Res> {
+  factory _$$_LoginObjectCopyWith(_$_LoginObject value, $Res Function(_$_LoginObject) then) = __$$_LoginObjectCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String username, String password});
 }
 
 /// @nodoc
-class __$$_LoginObjectCopyWithImpl<$Res>
-    extends _$LoginObjectCopyWithImpl<$Res, _$_LoginObject>
-    implements _$$_LoginObjectCopyWith<$Res> {
-  __$$_LoginObjectCopyWithImpl(
-      _$_LoginObject _value, $Res Function(_$_LoginObject) _then)
-      : super(_value, _then);
+class __$$_LoginObjectCopyWithImpl<$Res> extends _$LoginObjectCopyWithImpl<$Res, _$_LoginObject> implements _$$_LoginObjectCopyWith<$Res> {
+  __$$_LoginObjectCopyWithImpl(_$_LoginObject _value, $Res Function(_$_LoginObject) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -120,10 +109,8 @@ class _$_LoginObject implements _LoginObject {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoginObject &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.password, password) ||
-                other.password == password));
+            (identical(other.username, username) || other.username == username) &&
+            (identical(other.password, password) || other.password == password));
   }
 
   @override
@@ -132,13 +119,11 @@ class _$_LoginObject implements _LoginObject {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoginObjectCopyWith<_$_LoginObject> get copyWith =>
-      __$$_LoginObjectCopyWithImpl<_$_LoginObject>(this, _$identity);
+  _$$_LoginObjectCopyWith<_$_LoginObject> get copyWith => __$$_LoginObjectCopyWithImpl<_$_LoginObject>(this, _$identity);
 }
 
 abstract class _LoginObject implements LoginObject {
-  const factory _LoginObject(final String username, final String password) =
-      _$_LoginObject;
+  const factory _LoginObject(final String username, final String password) = _$_LoginObject;
 
   @override
   String get username;
@@ -146,8 +131,7 @@ abstract class _LoginObject implements LoginObject {
   String get password;
   @override
   @JsonKey(ignore: true)
-  _$$_LoginObjectCopyWith<_$_LoginObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_LoginObjectCopyWith<_$_LoginObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -160,27 +144,18 @@ mixin _$RegisterObject {
   String get profilePicture => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RegisterObjectCopyWith<RegisterObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RegisterObjectCopyWith<RegisterObject> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RegisterObjectCopyWith<$Res> {
-  factory $RegisterObjectCopyWith(
-          RegisterObject value, $Res Function(RegisterObject) then) =
-      _$RegisterObjectCopyWithImpl<$Res, RegisterObject>;
+  factory $RegisterObjectCopyWith(RegisterObject value, $Res Function(RegisterObject) then) = _$RegisterObjectCopyWithImpl<$Res, RegisterObject>;
   @useResult
-  $Res call(
-      {String countryCode, String mobileNumber,
-      String username,
-      String email,
-      String password,
-      String profilePicture});
+  $Res call({String countryCode, String mobileNumber, String username, String email, String password, String profilePicture});
 }
 
 /// @nodoc
-class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject>
-    implements $RegisterObjectCopyWith<$Res> {
+class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject> implements $RegisterObjectCopyWith<$Res> {
   _$RegisterObjectCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -228,28 +203,17 @@ class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject>
 }
 
 /// @nodoc
-abstract class _$$_RegisterObjectCopyWith<$Res>
-    implements $RegisterObjectCopyWith<$Res> {
-  factory _$$_RegisterObjectCopyWith(
-          _$_RegisterObject value, $Res Function(_$_RegisterObject) then) =
-      __$$_RegisterObjectCopyWithImpl<$Res>;
+abstract class _$$_RegisterObjectCopyWith<$Res> implements $RegisterObjectCopyWith<$Res> {
+  factory _$$_RegisterObjectCopyWith(_$_RegisterObject value, $Res Function(_$_RegisterObject) then) = __$$_RegisterObjectCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String countryCode, String mobileNumber,
-      String username,
-      String email,
-      String password,
-      String profilePicture});
+  $Res call({String countryCode, String mobileNumber, String username, String email, String password, String profilePicture});
 }
 
 /// @nodoc
-class __$$_RegisterObjectCopyWithImpl<$Res>
-    extends _$RegisterObjectCopyWithImpl<$Res, _$_RegisterObject>
+class __$$_RegisterObjectCopyWithImpl<$Res> extends _$RegisterObjectCopyWithImpl<$Res, _$_RegisterObject>
     implements _$$_RegisterObjectCopyWith<$Res> {
-  __$$_RegisterObjectCopyWithImpl(
-      _$_RegisterObject _value, $Res Function(_$_RegisterObject) _then)
-      : super(_value, _then);
+  __$$_RegisterObjectCopyWithImpl(_$_RegisterObject _value, $Res Function(_$_RegisterObject) _then) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -320,13 +284,10 @@ class _$_RegisterObject implements _RegisterObject {
             other is _$_RegisterObject &&
             (identical(other.countryCode, countryCode) || other.countryCode == countryCode) &&
             (identical(other.mobileNumber, mobileNumber) || other.mobileNumber == mobileNumber) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.username, username) || other.username == username) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.profilePicture, profilePicture) ||
-                other.profilePicture == profilePicture));
+            (identical(other.password, password) || other.password == password) &&
+            (identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture));
   }
 
   @override
@@ -335,16 +296,11 @@ class _$_RegisterObject implements _RegisterObject {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RegisterObjectCopyWith<_$_RegisterObject> get copyWith =>
-      __$$_RegisterObjectCopyWithImpl<_$_RegisterObject>(this, _$identity);
+  _$$_RegisterObjectCopyWith<_$_RegisterObject> get copyWith => __$$_RegisterObjectCopyWithImpl<_$_RegisterObject>(this, _$identity);
 }
 
 abstract class _RegisterObject implements RegisterObject {
-  const factory _RegisterObject(
-      final String countryCode, final String mobileNumber,
-      final String username,
-      final String email,
-      final String password,
+  const factory _RegisterObject(final String countryCode, final String mobileNumber, final String username, final String email, final String password,
       final String profilePicture) = _$_RegisterObject;
 
   @override
@@ -361,6 +317,5 @@ abstract class _RegisterObject implements RegisterObject {
   String get profilePicture;
   @override
   @JsonKey(ignore: true)
-  _$$_RegisterObjectCopyWith<_$_RegisterObject> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_RegisterObjectCopyWith<_$_RegisterObject> get copyWith => throw _privateConstructorUsedError;
 }

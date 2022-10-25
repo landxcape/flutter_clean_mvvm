@@ -19,6 +19,7 @@ class RegisterUseCase implements BaseUseCase<RegisterUseCaseInput, Authenticatio
       input.username,
       input.email,
       input.password,
+      input.mobileNumber,
       input.profilePicture,
     ));
   }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 
 // Project imports:
+import 'package:flutter_clean_mvvm/data/network/error_handler.dart';
 import '/app/functions.dart';
 import '/domain/usecase/register_usecase.dart';
 import '/presentation/base/baseviewmodel.dart';
@@ -10,6 +11,8 @@ import '/presentation/common/freezed_data_classes.dart';
 import '/presentation/common/state_renderer/state_renderer.dart';
 import '/presentation/common/state_renderer/state_renderer_impl.dart';
 import '/presentation/resources/strings_manager.dart';
+
+// Project imports:
 
 class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, RegisterViewModelOutput {
   final StreamController _mobileNumberStreamController = StreamController<String>.broadcast();
@@ -19,6 +22,8 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   final StreamController _profilePictureStreamController = StreamController<File>.broadcast();
 
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
+
+  final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>();
 
   final RegisterUseCase _registerUseCase;
 
@@ -50,6 +55,8 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
       },
       (data) {
         inputState.add(ContentState());
+        inputState.add(SuccessState(ResponseMessage.success));
+        isUserLoggedInSuccessfullyStreamController.add(true);
       },
     );
   }
@@ -62,16 +69,19 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
     _passwordStreamController.close();
     _profilePictureStreamController.close();
     _isAllInputsValidStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
   setUsername(String username) {
+    inputUsername.add(username);
     registerViewObject = registerViewObject.copyWith(username: _isUsernameValid(username) ? username : '');
     _validate();
   }
 
   @override
   setMobileNumber(String mobileNumber) {
+    inputMobileNumber.add(mobileNumber);
     registerViewObject = registerViewObject.copyWith(mobileNumber: _isMobileNumberValid(mobileNumber) ? mobileNumber : '');
     _validate();
   }
@@ -84,18 +94,21 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   setEmail(String email) {
+    inputEmail.add(email);
     registerViewObject = registerViewObject.copyWith(email: isEmailValid(email) ? email : '');
     _validate();
   }
 
   @override
   setPassword(String password) {
+    inputPassword.add(password);
     registerViewObject = registerViewObject.copyWith(password: _isPasswordValid(password) ? password : '');
     _validate();
   }
 
   @override
   setProfilePicture(File profilePicture) {
+    inputProfilePicture.add(profilePicture);
     registerViewObject = registerViewObject.copyWith(profilePicture: _isProfilePictureValid(profilePicture) ? profilePicture.path : '');
     _validate();
   }
@@ -110,7 +123,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   Sink get inputPassword => _passwordStreamController.sink;
 
   @override
-  Sink get inputProfilePicutre => _profilePictureStreamController.sink;
+  Sink get inputProfilePicture => _profilePictureStreamController.sink;
 
   @override
   Sink get inputUsername => _usernameStreamController.sink;
@@ -148,7 +161,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   // private methods
   bool _isUsernameValid(String username) => username.length >= 8;
   bool _isMobileNumberValid(String mobileNumber) => mobileNumber.length == 10;
-  bool _isPasswordValid(String password) => password.length >= 8;
+  bool _isPasswordValid(String password) => password.length >= 6;
   bool _isCountryCodeValid(String countryCode) => countryCode.isNotEmpty;
   bool _isProfilePictureValid(File file) => file.path.isNotEmpty;
   bool _isAllInputsValid() =>
@@ -180,7 +193,7 @@ abstract class RegisterViewModelInput {
 
   Sink get inputPassword;
 
-  Sink get inputProfilePicutre;
+  Sink get inputProfilePicture;
 
   Sink get inputAllInputsValid;
 }

@@ -3,15 +3,17 @@ import 'dart:io';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 // Package imports:
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 // Project imports:
+import 'package:flutter_clean_mvvm/app/app_prefs.dart';
 import 'package:flutter_clean_mvvm/app/constants.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
-import 'package:image_picker/image_picker.dart';
 import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
 import '/app/dependency_injection.dart';
@@ -29,6 +31,7 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   final RegisterViewModel _viewModel = instance<RegisterViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   final ImagePicker imagePicker = instance<ImagePicker>();
 
   final _formKey = GlobalKey<FormState>();
@@ -41,9 +44,17 @@ class _RegisterViewState extends State<RegisterView> {
   _bind() {
     _viewModel.start();
     _usernameController.addListener(() => _viewModel.setUsername(_usernameController.text));
-    _mobileNumberController.addListener(() => _viewModel.setUsername(_mobileNumberController.text));
-    _emailController.addListener(() => _viewModel.setUsername(_emailController.text));
-    _passwordController.addListener(() => _viewModel.setUsername(_passwordController.text));
+    _mobileNumberController.addListener(() => _viewModel.setMobileNumber(_mobileNumberController.text));
+    _emailController.addListener(() => _viewModel.setEmail(_emailController.text));
+    _passwordController.addListener(() => _viewModel.setPassword(_passwordController.text));
+
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((isSuccessfullyLoggedIn) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        // _appPreferences.setIsUserLoggedIn();
+        // Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        Navigator.of(context).pop();
+      });
+    });
   }
 
   @override
@@ -183,11 +194,13 @@ class _RegisterViewState extends State<RegisterView> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: Container(
-                height: AppSize.s40,
+                height: AppSize.s50,
                 decoration: BoxDecoration(
                   border: Border.all(
+                    width: AppSize.s1_5,
                     color: ColorManager.lightGrey,
                   ),
+                  borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
                 ),
                 child: GestureDetector(
                   child: _getMediaWidget(),
@@ -276,7 +289,7 @@ class _RegisterViewState extends State<RegisterView> {
           child: Wrap(
             children: [
               ListTile(
-                leading: const Icon(Icons.camera),
+                leading: const Icon(Icons.photo_album),
                 trailing: const Icon(Icons.arrow_forward),
                 title: const Text(AppStrings.photoGallery),
                 onTap: () {

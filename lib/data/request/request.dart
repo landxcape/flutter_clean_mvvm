@@ -18,6 +18,7 @@ class RegisterRequest {
   String username;
   String email;
   String password;
+  String mobileNumber;
   String profilePicture;
 
   RegisterRequest(
@@ -25,6 +26,7 @@ class RegisterRequest {
     this.username,
     this.email,
     this.password,
+    this.mobileNumber,
     this.profilePicture,
   );
 }

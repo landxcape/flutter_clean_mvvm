@@ -69,7 +69,7 @@ extension DataSourceExtension on DataSource {
   Failure getFailure() {
     switch (this) {
       case DataSource.badRequest:
-          return Failure(ResponseCode.badRequest, ResponseMessage.badRequest);
+        return Failure(ResponseCode.badRequest, ResponseMessage.badRequest);
       case DataSource.forbidden:
         return Failure(ResponseCode.forbidden, ResponseMessage.forbidden);
       case DataSource.unauthorised:
@@ -141,5 +141,4 @@ class ResponseMessage {
 class ApiInternalStatus {
   static const int success = 0;
   static const int failure = 1;
-  
 }
