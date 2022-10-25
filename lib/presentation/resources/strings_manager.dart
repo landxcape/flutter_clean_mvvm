@@ -32,6 +32,11 @@ class AppStrings {
   static const String register = 'Register';
   static const String haveAccount = 'Already have an account? Login';
 
+  static const String home = 'Home';
+  static const String notifications = 'Notifications';
+  static const String search = 'Search';
+  static const String settings = 'Settings';
+
   static const String success = 'Success';
   static const String loading = 'Loading...';
   static const String retryAgain = 'Retry Again';
