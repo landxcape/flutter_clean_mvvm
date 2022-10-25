@@ -75,7 +75,7 @@ ThemeData getApplicationTheme() {
       labelStyle: getMediumStyle(color: ColorManager.darkGrey),
       errorStyle: getRegularStyle(color: ColorManager.error),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.grey, width: AppSize.s1_5),
+        borderSide: BorderSide(color: ColorManager.lightGrey, width: AppSize.s1_5),
         borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
       ),
       focusedBorder: OutlineInputBorder(

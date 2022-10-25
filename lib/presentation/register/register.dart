@@ -81,14 +81,14 @@ class _RegisterViewState extends State<RegisterView> {
 
   Widget _getContentWidget() {
     return Container(
-      padding: const EdgeInsets.only(top: AppPadding.p60),
+      padding: const EdgeInsets.only(top: AppPadding.p30),
       color: ColorManager.white,
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(children: [
             const Image(image: AssetImage(ImageAssets.splashLogo)),
-            const SizedBox(height: AppSize.s28),
+            const SizedBox(height: AppSize.s12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: StreamBuilder<String?>(
@@ -106,7 +106,7 @@ class _RegisterViewState extends State<RegisterView> {
                 },
               ),
             ),
-            const SizedBox(height: AppSize.s28),
+            const SizedBox(height: AppSize.s4),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: Row(children: [
@@ -120,7 +120,8 @@ class _RegisterViewState extends State<RegisterView> {
                     initialSelection: Constants.defaultCountryCode,
                     showCountryOnly: true,
                     showOnlyCountryWhenClosed: true,
-                    favorite: const [Constants.defaultCountryCode, '+966'],
+                    hideMainText: true,
+                    favorite: const [Constants.defaultCountryCode, '+39'],
                   ),
                 ),
                 Expanded(
@@ -142,7 +143,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ]),
             ),
-            const SizedBox(height: AppSize.s28),
+            const SizedBox(height: AppSize.s4),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: StreamBuilder<String?>(
@@ -160,7 +161,7 @@ class _RegisterViewState extends State<RegisterView> {
                 },
               ),
             ),
-            const SizedBox(height: AppSize.s28),
+            const SizedBox(height: AppSize.s12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: StreamBuilder<String?>(
@@ -178,10 +179,11 @@ class _RegisterViewState extends State<RegisterView> {
                 },
               ),
             ),
-            const SizedBox(height: AppSize.s28),
+            const SizedBox(height: AppSize.s12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: Container(
+                height: AppSize.s40,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: ColorManager.lightGrey,
@@ -195,7 +197,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ),
             ),
-            const SizedBox(height: AppSize.s28),
+            const SizedBox(height: AppSize.s12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: StreamBuilder<bool>(
