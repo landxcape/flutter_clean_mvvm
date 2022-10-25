@@ -1,5 +1,8 @@
 // Flutter imports:
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_mvvm/app/constants.dart';
+import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 
 // Project imports:
 import '../resources/assets_manager.dart';
@@ -71,7 +74,7 @@ class _RegisterViewState extends State<RegisterView> {
 
   Widget _getContentWidget() {
     return Container(
-      padding: const EdgeInsets.only(top: AppPadding.p100),
+      padding: const EdgeInsets.only(top: AppPadding.p60),
       color: ColorManager.white,
       child: SingleChildScrollView(
         child: Form(
@@ -85,7 +88,7 @@ class _RegisterViewState extends State<RegisterView> {
                 stream: _viewModel.outputErrorUsername,
                 builder: (context, snapshot) {
                   return TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.name,
                     controller: _usernameController,
                     decoration: InputDecoration(
                       hintText: AppStrings.username,
@@ -99,11 +102,65 @@ class _RegisterViewState extends State<RegisterView> {
             const SizedBox(height: AppSize.s28),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+              child: Row(children: [
+                Expanded(
+                  flex: 1,
+                  child: CountryCodePicker(
+                    onChanged: (CountryCode countryCode) {
+                      // update viewmodel with the selected code
+                      _viewModel.setCountryCode(countryCode.dialCode ?? emptyString);
+                    },
+                    initialSelection: Constants.defaultCountryCode,
+                    showCountryOnly: true,
+                    showOnlyCountryWhenClosed: true,
+                    favorite: const [Constants.defaultCountryCode, '+966'],
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: StreamBuilder<String?>(
+                    stream: _viewModel.outputErrorMobileNumber,
+                    builder: (context, snapshot) {
+                      return TextFormField(
+                        keyboardType: TextInputType.phone,
+                        controller: _mobileNumberController,
+                        decoration: InputDecoration(
+                          hintText: AppStrings.mobileNumber,
+                          labelText: AppStrings.mobileNumber,
+                          errorText: snapshot.data,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ]),
+            ),
+            const SizedBox(height: AppSize.s28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+              child: StreamBuilder<String?>(
+                stream: _viewModel.outputErrorEmail,
+                builder: (context, snapshot) {
+                  return TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      hintText: AppStrings.emailHint,
+                      labelText: AppStrings.emailHint,
+                      errorText: snapshot.data,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: AppSize.s28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
               child: StreamBuilder<String?>(
                 stream: _viewModel.outputErrorPassword,
                 builder: (context, snapshot) {
                   return TextFormField(
-                    keyboardType: TextInputType.emailAddress,
+                    // keyboardType: TextInputType.visiblePassword,
                     controller: _passwordController,
                     decoration: InputDecoration(
                       hintText: AppStrings.password,
@@ -112,6 +169,23 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   );
                 },
+              ),
+            ),
+            const SizedBox(height: AppSize.s28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: ColorManager.lightGrey,
+                  ),
+                ),
+                child: GestureDetector(
+                  child: _getMediaWidget(),
+                  onTap: () {
+                    _showPicker(context);
+                  },
+                ),
               ),
             ),
             const SizedBox(height: AppSize.s28),
@@ -164,5 +238,4 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
   }
-  
 }

@@ -20,6 +20,7 @@ class AppStrings {
   static const String password = 'Passowrd';
   static const String invalidPassword = 'Invalid Password';
   static const String invalidMobileNumber = 'Invalid Mobile Number';
+  static const String mobileNumber = 'Mobile Number';
 
   static const String login = 'Login';
   static const String forgetPassword = 'Forget Password';
