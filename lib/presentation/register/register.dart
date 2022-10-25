@@ -11,6 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // Project imports:
 import 'package:flutter_clean_mvvm/app/constants.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
+import 'package:image_picker/image_picker.dart';
 import '../resources/assets_manager.dart';
 import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
@@ -29,6 +30,7 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   final RegisterViewModel _viewModel = instance<RegisterViewModel>();
+  final ImagePicker imagePicker = instance<ImagePicker>();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -275,5 +277,49 @@ class _RegisterViewState extends State<RegisterView> {
       return Image.file(image);
     }
     return Container();
+  }
+
+  _showPicker(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera),
+                trailing: const Icon(Icons.arrow_forward),
+                title: const Text(AppStrings.photoGallery),
+                onTap: () {
+                  _imageFromGallery();
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.camera),
+                trailing: const Icon(Icons.arrow_forward),
+                title: const Text(AppStrings.photoCamera),
+                onTap: () {
+                  _imageFromCamera();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  _imageFromGallery() async {
+    XFile? image = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    _viewModel.setProfilePicture(File(image?.path ?? ''));
+  }
+
+  _imageFromCamera() async {
+    XFile? image = await imagePicker.pickImage(source: ImageSource.camera);
+
+    _viewModel.setProfilePicture(File(image?.path ?? ''));
   }
 }
