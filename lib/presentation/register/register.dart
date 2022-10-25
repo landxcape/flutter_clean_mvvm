@@ -1,9 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
-import 'package:flutter_clean_mvvm/presentation/register/register_viewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
+
+// Project imports:
+import '../resources/assets_manager.dart';
+import '../resources/routes_manager.dart';
+import '../resources/strings_manager.dart';
+import '/app/dependency_injection.dart';
+import '/presentation/common/state_renderer/state_renderer_impl.dart';
+import '/presentation/register/register_viewmodel.dart';
+import '/presentation/resources/color_manager.dart';
+import '/presentation/resources/values_manager.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -17,17 +23,17 @@ class _RegisterViewState extends State<RegisterView> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _usernameTextEditingController = TextEditingController();
-  final TextEditingController _mobileNumberTextEditingController = TextEditingController();
-  final TextEditingController _emailTextEditingController = TextEditingController();
-  final TextEditingController _passwordTextEditingController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _mobileNumberController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   _bind() {
     _viewModel.start();
-    _usernameTextEditingController.addListener(() => _viewModel.setUsername(_usernameTextEditingController.text));
-    _mobileNumberTextEditingController.addListener(() => _viewModel.setUsername(_mobileNumberTextEditingController.text));
-    _emailTextEditingController.addListener(() => _viewModel.setUsername(_emailTextEditingController.text));
-    _passwordTextEditingController.addListener(() => _viewModel.setUsername(_passwordTextEditingController.text));
+    _usernameController.addListener(() => _viewModel.setUsername(_usernameController.text));
+    _mobileNumberController.addListener(() => _viewModel.setUsername(_mobileNumberController.text));
+    _emailController.addListener(() => _viewModel.setUsername(_emailController.text));
+    _passwordController.addListener(() => _viewModel.setUsername(_passwordController.text));
   }
 
   @override
@@ -64,6 +70,99 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   Widget _getContentWidget() {
-    return Container();
+    return Container(
+      padding: const EdgeInsets.only(top: AppPadding.p100),
+      color: ColorManager.white,
+      child: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(children: [
+            const Image(image: AssetImage(ImageAssets.splashLogo)),
+            const SizedBox(height: AppSize.s28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+              child: StreamBuilder<String?>(
+                stream: _viewModel.outputErrorUsername,
+                builder: (context, snapshot) {
+                  return TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      hintText: AppStrings.username,
+                      labelText: AppStrings.username,
+                      errorText: snapshot.data,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: AppSize.s28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+              child: StreamBuilder<String?>(
+                stream: _viewModel.outputErrorPassword,
+                builder: (context, snapshot) {
+                  return TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      hintText: AppStrings.password,
+                      labelText: AppStrings.password,
+                      errorText: snapshot.data,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: AppSize.s28),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+              child: StreamBuilder<bool>(
+                  stream: _viewModel.outputIsAllInputsValid,
+                  builder: (context, snapshot) {
+                    return SizedBox(
+                      width: double.infinity,
+                      height: AppSize.s40,
+                      child: ElevatedButton(
+                        onPressed: (snapshot.data ?? false)
+                            ? () {
+                                _viewModel.register();
+                              }
+                            : null,
+                        child: const Text(AppStrings.login),
+                      ),
+                    );
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(AppPadding.p28, AppPadding.p8, AppPadding.p28, 0.0),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.forgetPasswordRoute);
+                  },
+                  child: Text(
+                    AppStrings.forgetPassword,
+                    style: Theme.of(context).textTheme.subtitle2,
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.registerRoute);
+                  },
+                  child: Text(
+                    AppStrings.registerText,
+                    style: Theme.of(context).textTheme.subtitle2,
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ]),
+            ),
+          ]),
+        ),
+      ),
+    );
   }
+  
 }
