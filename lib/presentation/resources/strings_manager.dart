@@ -29,6 +29,8 @@ class AppStrings {
   static const String forgetPassword = 'Forget Password';
   static const String resetPassword = 'Reset Password';
   static const String registerText = 'Not a member? Sign up';
+  static const String register = 'Register';
+  static const String haveAccount = 'Already have an account? Login';
 
   static const String success = 'Success';
   static const String loading = 'Loading...';

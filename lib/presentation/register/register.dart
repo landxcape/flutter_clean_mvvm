@@ -13,7 +13,6 @@ import 'package:flutter_clean_mvvm/app/constants.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import 'package:image_picker/image_picker.dart';
 import '../resources/assets_manager.dart';
-import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
 import '/app/dependency_injection.dart';
 import '/presentation/common/state_renderer/state_renderer_impl.dart';
@@ -188,12 +187,12 @@ class _RegisterViewState extends State<RegisterView> {
                     color: ColorManager.lightGrey,
                   ),
                 ),
-                // child: GestureDetector(
-                //   child: _getMediaWidget(),
-                //   onTap: () {
-                //     _showPicker(context);
-                //   },
-                // ),
+                child: GestureDetector(
+                  child: _getMediaWidget(),
+                  onTap: () {
+                    _showPicker(context);
+                  },
+                ),
               ),
             ),
             const SizedBox(height: AppSize.s28),
@@ -211,35 +210,23 @@ class _RegisterViewState extends State<RegisterView> {
                                 _viewModel.register();
                               }
                             : null,
-                        child: const Text(AppStrings.login),
+                        child: const Text(AppStrings.register),
                       ),
                     );
                   }),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(AppPadding.p28, AppPadding.p8, AppPadding.p28, 0.0),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, Routes.forgetPasswordRoute);
-                  },
-                  child: Text(
-                    AppStrings.forgetPassword,
-                    style: Theme.of(context).textTheme.subtitle2,
-                    textAlign: TextAlign.end,
-                  ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  AppStrings.haveAccount,
+                  style: Theme.of(context).textTheme.subtitle2,
+                  textAlign: TextAlign.end,
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, Routes.registerRoute);
-                  },
-                  child: Text(
-                    AppStrings.registerText,
-                    style: Theme.of(context).textTheme.subtitle2,
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ]),
+              ),
             ),
           ]),
         ),
