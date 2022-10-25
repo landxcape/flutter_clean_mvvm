@@ -1,10 +1,16 @@
+// Dart imports:
+import 'dart:io';
+
 // Flutter imports:
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_mvvm/app/constants.dart';
-import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
+
+// Package imports:
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
+import 'package:flutter_clean_mvvm/app/constants.dart';
+import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import '../resources/assets_manager.dart';
 import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
@@ -180,12 +186,12 @@ class _RegisterViewState extends State<RegisterView> {
                     color: ColorManager.lightGrey,
                   ),
                 ),
-                child: GestureDetector(
-                  child: _getMediaWidget(),
-                  onTap: () {
-                    _showPicker(context);
-                  },
-                ),
+                // child: GestureDetector(
+                //   child: _getMediaWidget(),
+                //   onTap: () {
+                //     _showPicker(context);
+                //   },
+                // ),
               ),
             ),
             const SizedBox(height: AppSize.s28),
@@ -237,5 +243,37 @@ class _RegisterViewState extends State<RegisterView> {
         ),
       ),
     );
+  }
+
+  Widget _getMediaWidget() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Flexible(
+            child: Text(AppStrings.profilePicture),
+          ),
+          Flexible(
+            child: StreamBuilder<File?>(
+              stream: _viewModel.outputProfilePicture,
+              builder: (context, snapshot) {
+                return _imagePickedByUser(snapshot.data);
+              },
+            ),
+          ),
+          Flexible(
+            child: SvgPicture.asset(ImageAssets.photoCameraIc),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _imagePickedByUser(File? image) {
+    if (image != null && image.path.isNotEmpty) {
+      return Image.file(image);
+    }
+    return Container();
   }
 }

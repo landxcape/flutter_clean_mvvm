@@ -1,8 +1,6 @@
 // Dart imports:
 import 'dart:async';
-
-// Package imports:
-import 'package:analyzer/file_system/file_system.dart';
+import 'dart:io';
 
 // Project imports:
 import '/app/functions.dart';
@@ -142,7 +140,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   Stream<String?> get outputErrorPassword => outputIsPasswordValid.map((isPasswordValid) => isPasswordValid ? null : AppStrings.invalidPassword);
 
   @override
-  Stream<File> get outputIsProfilePictureValid => _profilePictureStreamController.stream.map((file) => file);
+  Stream<File?> get outputProfilePicture => _profilePictureStreamController.stream.map((file) => file);
 
   @override
   Stream<bool> get outputIsAllInputsValid => _isAllInputsValidStreamController.stream.map((_) => _isAllInputsValid());
@@ -200,7 +198,7 @@ abstract class RegisterViewModelOutput {
   Stream<bool> get outputIsPasswordValid;
   Stream<String?> get outputErrorPassword;
 
-  Stream<File> get outputIsProfilePictureValid;
+  Stream<File?> get outputProfilePicture;
 
   Stream<bool> get outputIsAllInputsValid;
 }
