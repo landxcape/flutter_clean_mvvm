@@ -2,10 +2,10 @@
 import 'dart:async';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/domain/model/model.dart';
-import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
+import '/domain/model/model.dart';
+import '/presentation/base/baseviewmodel.dart';
 
 class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, OnBoardingViewModelOutputs {
   //stream controllers

@@ -6,8 +6,8 @@ import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/app/constants.dart';
+import '/app/app_prefs.dart';
+import '/app/constants.dart';
 
 const String applicationJson = 'application/json';
 const String contentType = 'content-type';

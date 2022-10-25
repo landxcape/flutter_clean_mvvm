@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
-import 'package:flutter_clean_mvvm/presentation/forgot_password/forgot_password.dart';
-import 'package:flutter_clean_mvvm/presentation/login/login.dart';
-import 'package:flutter_clean_mvvm/presentation/main/main_view.dart';
-import 'package:flutter_clean_mvvm/presentation/on_boarding/on_boarding.dart';
-import 'package:flutter_clean_mvvm/presentation/register/register.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/splash/splash.dart';
-import 'package:flutter_clean_mvvm/presentation/store_details/store_details.dart';
+import '/app/dependency_injection.dart';
+import '/presentation/forgot_password/forgot_password.dart';
+import '/presentation/login/login.dart';
+import '/presentation/main/main_view.dart';
+import '/presentation/on_boarding/on_boarding.dart';
+import '/presentation/register/register.dart';
+import '/presentation/resources/strings_manager.dart';
+import '/presentation/splash/splash.dart';
+import '/presentation/store_details/store_details.dart';
 
 class Routes {
   static const String splashRoute = '/';

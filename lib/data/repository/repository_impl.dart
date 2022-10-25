@@ -2,14 +2,14 @@
 import 'package:dartz/dartz.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/data/data_source/remote_data_source.dart';
-import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
-import 'package:flutter_clean_mvvm/data/network/error_handler.dart';
-import 'package:flutter_clean_mvvm/data/network/failure.dart';
-import 'package:flutter_clean_mvvm/data/network/network_info.dart';
-import 'package:flutter_clean_mvvm/data/request/request.dart';
-import 'package:flutter_clean_mvvm/domain/model/model.dart';
-import 'package:flutter_clean_mvvm/domain/repository/repository.dart';
+import '/data/data_source/remote_data_source.dart';
+import '/data/mapper/mapper.dart';
+import '/data/network/error_handler.dart';
+import '/data/network/failure.dart';
+import '/data/network/network_info.dart';
+import '/data/request/request.dart';
+import '/domain/model/model.dart';
+import '/domain/repository/repository.dart';
 
 class RepositoryImpl extends Repository {
   final RemoteDataSource _remoteDataSource;

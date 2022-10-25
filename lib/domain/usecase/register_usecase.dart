@@ -2,11 +2,11 @@
 import 'package:dartz/dartz.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/data/network/failure.dart';
-import 'package:flutter_clean_mvvm/data/request/request.dart';
-import 'package:flutter_clean_mvvm/domain/model/model.dart';
-import 'package:flutter_clean_mvvm/domain/repository/repository.dart';
-import 'package:flutter_clean_mvvm/domain/usecase/base_usecase.dart';
+import '/data/network/failure.dart';
+import '/data/request/request.dart';
+import '/domain/model/model.dart';
+import '/domain/repository/repository.dart';
+import '/domain/usecase/base_usecase.dart';
 
 class RegisterUseCase implements BaseUseCase<RegisterUseCaseInput, Authentication> {
   final Repository _repository;

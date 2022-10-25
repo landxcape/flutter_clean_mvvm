@@ -1,5 +1,5 @@
 // Project imports:
-import 'package:flutter_clean_mvvm/data/network/error_handler.dart';
+import '/data/network/error_handler.dart';
 
 class Failure {
   int code; // 200, 400, etc.

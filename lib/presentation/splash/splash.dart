@@ -5,11 +5,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
+import '/app/app_prefs.dart';
+import '/app/dependency_injection.dart';
+import '/presentation/resources/assets_manager.dart';
+import '/presentation/resources/color_manager.dart';
+import '/presentation/resources/routes_manager.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);

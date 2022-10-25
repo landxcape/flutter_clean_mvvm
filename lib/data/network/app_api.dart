@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/constants.dart';
-import 'package:flutter_clean_mvvm/data/responses/responses.dart';
+import '/app/constants.dart';
+import '/data/responses/responses.dart';
 
 part 'app_api.g.dart';
 

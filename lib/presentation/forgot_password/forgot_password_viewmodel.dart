@@ -2,11 +2,11 @@
 import 'dart:async';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/domain/usecase/forgot_password_usecase.dart';
-import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import '../../app/functions.dart';
+import '/domain/usecase/forgot_password_usecase.dart';
+import '/presentation/base/baseviewmodel.dart';
+import '/presentation/common/state_renderer/state_renderer.dart';
+import '/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class ForgotPasswordViewModel extends BaseViewModel with ForgotPasswordViewModelInput, ForgotPasswordViewModelOutput {
   final StreamController _emailStreamController = StreamController<String>.broadcast();

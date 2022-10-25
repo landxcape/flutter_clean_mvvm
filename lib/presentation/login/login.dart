@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
-import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 import '../common/state_renderer/state_renderer_impl.dart';
+import '/app/app_prefs.dart';
+import '/app/dependency_injection.dart';
+import '/presentation/login/login_viewmodel.dart';
+import '/presentation/resources/assets_manager.dart';
+import '/presentation/resources/color_manager.dart';
+import '/presentation/resources/routes_manager.dart';
+import '/presentation/resources/strings_manager.dart';
+import '/presentation/resources/values_manager.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);

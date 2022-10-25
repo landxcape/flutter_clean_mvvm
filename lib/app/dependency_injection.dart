@@ -4,19 +4,19 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/data/data_source/remote_data_source.dart';
-import 'package:flutter_clean_mvvm/data/network/app_api.dart';
-import 'package:flutter_clean_mvvm/data/network/dio_factory.dart';
-import 'package:flutter_clean_mvvm/data/network/network_info.dart';
-import 'package:flutter_clean_mvvm/domain/repository/repository.dart';
-import 'package:flutter_clean_mvvm/domain/usecase/forgot_password_usecase.dart';
-import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
-import 'package:flutter_clean_mvvm/presentation/login/login_viewmodel.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/usecase/register_usecase.dart';
 import '../presentation/forgot_password/forgot_password_viewmodel.dart';
 import '../presentation/register/register_viewmodel.dart';
+import '/app/app_prefs.dart';
+import '/data/data_source/remote_data_source.dart';
+import '/data/network/app_api.dart';
+import '/data/network/dio_factory.dart';
+import '/data/network/network_info.dart';
+import '/domain/repository/repository.dart';
+import '/domain/usecase/forgot_password_usecase.dart';
+import '/domain/usecase/login_usecase.dart';
+import '/presentation/login/login_viewmodel.dart';
 
 final instance = GetIt.instance;
 

@@ -2,11 +2,11 @@
 import 'dart:async';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/domain/usecase/login_usecase.dart';
-import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
+import '/domain/usecase/login_usecase.dart';
+import '/presentation/base/baseviewmodel.dart';
+import '/presentation/common/freezed_data_classes.dart';
+import '/presentation/common/state_renderer/state_renderer.dart';
+import '/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewModelOutputs {
   final StreamController _usernameStreamController = StreamController<String>.broadcast();

@@ -507,7 +507,7 @@ packages:
     source: hosted
     version: "3.3.1"
   retrofit_generator:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: retrofit_generator
       url: "https://pub.dartlang.org"

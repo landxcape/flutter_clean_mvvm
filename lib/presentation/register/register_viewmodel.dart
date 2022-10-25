@@ -5,13 +5,13 @@ import 'dart:async';
 import 'package:analyzer/file_system/file_system.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/functions.dart';
-import 'package:flutter_clean_mvvm/domain/usecase/register_usecase.dart';
-import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/common/freezed_data_classes.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
+import '/app/functions.dart';
+import '/domain/usecase/register_usecase.dart';
+import '/presentation/base/baseviewmodel.dart';
+import '/presentation/common/freezed_data_classes.dart';
+import '/presentation/common/state_renderer/state_renderer.dart';
+import '/presentation/common/state_renderer/state_renderer_impl.dart';
+import '/presentation/resources/strings_manager.dart';
 
 class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, RegisterViewModelOutput {
   final StreamController _mobileNumberStreamController = StreamController<String>.broadcast();

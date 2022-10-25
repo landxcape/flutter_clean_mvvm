@@ -2,7 +2,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/presentation/resources/language_manager.dart';
+import '/presentation/resources/language_manager.dart';
 
 const String prefsKeyLang = 'prefsKeyLang';
 const String prefsKeyOnboardingScreen = 'prefsKeyOnboardingScreen';

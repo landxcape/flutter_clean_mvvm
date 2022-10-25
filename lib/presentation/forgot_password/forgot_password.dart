@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
-import 'package:flutter_clean_mvvm/presentation/forgot_password/forgot_password_viewmodel.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/strings_manager.dart';
 import '../resources/values_manager.dart';
+import '/app/dependency_injection.dart';
+import '/presentation/common/state_renderer/state_renderer_impl.dart';
+import '/presentation/forgot_password/forgot_password_viewmodel.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({Key? key}) : super(key: key);

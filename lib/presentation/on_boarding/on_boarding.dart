@@ -6,15 +6,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
-import 'package:flutter_clean_mvvm/presentation/on_boarding/on_boarding_viewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 import '../../domain/model/model.dart';
+import '/app/app_prefs.dart';
+import '/app/dependency_injection.dart';
+import '/presentation/on_boarding/on_boarding_viewmodel.dart';
+import '/presentation/resources/assets_manager.dart';
+import '/presentation/resources/color_manager.dart';
+import '/presentation/resources/routes_manager.dart';
+import '/presentation/resources/strings_manager.dart';
+import '/presentation/resources/values_manager.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
