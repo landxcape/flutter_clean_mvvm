@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter_clean_mvvm/domain/model/model.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
+import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
+import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../domain/usecase/home_usecase.dart';
@@ -17,7 +20,24 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewMode
   // inputs
   @override
   void start() {
-    // TODO: implement start
+    _getHome();
+  }
+
+  _getHome() async {
+    inputState.add(LoadingState(stateRendererType: StateRendererType.fullScreenLoadingState));
+
+    (await _homeUseCase.execute(Void)).fold(
+      (failure) {
+        inputState.add(ErrorState(StateRendererType.fullScreenErrorState, failure.message));
+      },
+      (homeObject) {
+        inputState.add(ContentState());
+
+        inputBanners.add(homeObject.data.banners);
+        inputServices.add(homeObject.data.services);
+        inputStores.add(homeObject.data.stores);
+      },
+    );
   }
 
   @override
@@ -26,7 +46,7 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewMode
     _servicesController.close();
     _storesController.close();
   }
-  
+
   @override
   Sink get inputBanners => _bannersController.sink;
 
