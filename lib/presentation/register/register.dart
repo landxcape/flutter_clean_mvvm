@@ -15,6 +15,7 @@ import 'package:flutter_clean_mvvm/app/app_prefs.dart';
 import 'package:flutter_clean_mvvm/app/constants.dart';
 import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import '../resources/assets_manager.dart';
+import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
 import '/app/dependency_injection.dart';
 import '/presentation/common/state_renderer/state_renderer_impl.dart';
@@ -50,9 +51,9 @@ class _RegisterViewState extends State<RegisterView> {
 
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((isSuccessfullyLoggedIn) {
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        // _appPreferences.setIsUserLoggedIn();
-        // Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
-        Navigator.of(context).pop();
+        _appPreferences.setIsUserLoggedIn();
+        Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        // Navigator.of(context).pop();
       });
     });
   }
