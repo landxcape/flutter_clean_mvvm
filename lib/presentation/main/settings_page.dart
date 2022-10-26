@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 
 class SettingsPage extends StatefulWidget {

@@ -1,5 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/presentation/main/home_page.dart';
 import 'package:flutter_clean_mvvm/presentation/main/notifications_page.dart';
 import 'package:flutter_clean_mvvm/presentation/main/search_page.dart';
