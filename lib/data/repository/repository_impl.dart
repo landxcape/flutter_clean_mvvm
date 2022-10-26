@@ -90,4 +90,25 @@ class RepositoryImpl extends Repository {
       return Left(ErrorHandler.handle(error).failure);
     }
   }
+
+  @override
+  Future<Either<Failure, HomeObject>> getHome() async {
+    if (!(await _networkInfo.isConnected)) {
+      return Left(DataSource.noInternetConnection.getFailure());
+    }
+    try {
+      final response = await _remoteDataSource.getHome();
+
+      if (response.status == ApiInternalStatus.success) {
+        return Right(response.toDomain());
+      }
+
+      return Left(Failure(
+        response.status ?? ResponseCode.defaultError,
+        response.message ?? ResponseMessage.defaultError,
+      ));
+    } catch (error) {
+      return Left(ErrorHandler.handle(error).failure);
+    }
+  }
 }
