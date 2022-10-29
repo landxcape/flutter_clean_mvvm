@@ -11,8 +11,6 @@ import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 
 import '../common/state_renderer/state_renderer_impl.dart';
 
-// Project imports:
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -153,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                         child: Image.network(
                           service.image,
                           fit: BoxFit.cover,
-                          width: AppSize.s100,
+                          width: AppSize.s120,
                           height: AppSize.s100,
                         ),
                       ),
