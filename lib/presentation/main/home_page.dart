@@ -153,8 +153,8 @@ class _HomePageState extends State<HomePage> {
                         child: Image.network(
                           service.image,
                           fit: BoxFit.cover,
-                          width: AppSize.s130,
-                          height: AppSize.s130,
+                          width: AppSize.s100,
+                          height: AppSize.s100,
                         ),
                       ),
                       Padding(
@@ -209,10 +209,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: Card(
                   elevation: AppSize.s4,
-                  child: Image.network(
-                    stores[index].image,
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.network(stores[index].image),
                 ),
               );
             }),
