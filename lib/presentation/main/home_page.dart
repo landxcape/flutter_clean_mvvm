@@ -1,6 +1,10 @@
 // Flutter imports:
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:carousel_slider/carousel_slider.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
 import 'package:flutter_clean_mvvm/domain/model/model.dart';
 import 'package:flutter_clean_mvvm/presentation/main/home/home_viewmodel.dart';
@@ -8,7 +12,6 @@ import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
-
 import '../common/state_renderer/state_renderer_impl.dart';
 
 class HomePage extends StatefulWidget {

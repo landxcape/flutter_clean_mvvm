@@ -1,12 +1,15 @@
+// Dart imports:
 import 'dart:async';
 import 'dart:ffi';
 
+// Package imports:
+import 'package:rxdart/rxdart.dart';
+
+// Project imports:
 import 'package:flutter_clean_mvvm/domain/model/model.dart';
 import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
-import 'package:rxdart/rxdart.dart';
-
 import '../../../domain/usecase/home_usecase.dart';
 
 class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewModelOutputs {
