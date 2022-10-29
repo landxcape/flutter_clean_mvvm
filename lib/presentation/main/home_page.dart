@@ -5,6 +5,7 @@ import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
 import 'package:flutter_clean_mvvm/domain/model/model.dart';
 import 'package:flutter_clean_mvvm/presentation/main/home/home_viewmodel.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
+import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 
@@ -177,6 +178,47 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getStores() {
-    return Container();
+    return StreamBuilder<List<Service>>(
+      stream: _viewModel.outputServices,
+      builder: (context, snapshot) {
+        return _getStoresWidget(snapshot.data);
+      },
+    );
+  }
+
+  Widget _getStoresWidget(List<Service>? stores) {
+    if (stores == null) {
+      return Container();
+    }
+    return Padding(
+      padding: const EdgeInsets.all(AppPadding.p12),
+      child: Flex(
+        direction: Axis.vertical,
+        children: [
+          GridView.count(
+            crossAxisSpacing: AppSize.s8,
+            mainAxisSpacing: AppSize.s8,
+            physics: const ScrollPhysics(),
+            shrinkWrap: true,
+            crossAxisCount: AppSize.s2.toInt(),
+            children: List.generate(stores.length, (index) {
+              return InkWell(
+                onTap: () {
+                  // navigate to store details screen
+                  Navigator.of(context).pushNamed(Routes.storeDetailsRoute);
+                },
+                child: Card(
+                  elevation: AppSize.s4,
+                  child: Image.network(
+                    stores[index].image,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            }),
+          ),
+        ],
+      ),
+    );
   }
 }
