@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Project imports:
 import 'package:flutter_clean_mvvm/domain/usecase/home_usecase.dart';
 import 'package:flutter_clean_mvvm/presentation/main/home/home_viewmodel.dart';
+import '../data/data_source/local_data_source.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/usecase/register_usecase.dart';
 import '../presentation/forgot_password/forgot_password_viewmodel.dart';
@@ -45,8 +46,11 @@ Future<void> initAppModule() async {
   // remote data source
   instance.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl(instance()));
 
+  // remote data source
+  instance.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
+
   // repository
-  instance.registerLazySingleton<Repository>(() => RepositoryImpl(instance(), instance()));
+  instance.registerLazySingleton<Repository>(() => RepositoryImpl(instance(), instance(), instance()));
 }
 
 initLoginModule() {

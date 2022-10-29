@@ -2,6 +2,7 @@
 import 'package:dartz/dartz.dart';
 
 // Project imports:
+import '../data_source/local_data_source.dart';
 import '/data/data_source/remote_data_source.dart';
 import '/data/mapper/mapper.dart';
 import '/data/network/error_handler.dart';
@@ -13,10 +14,12 @@ import '/domain/repository/repository.dart';
 
 class RepositoryImpl extends Repository {
   final RemoteDataSource _remoteDataSource;
+  final LocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
 
   RepositoryImpl(
     this._remoteDataSource,
+    this._localDataSource,
     this._networkInfo,
   );
 
@@ -93,22 +96,28 @@ class RepositoryImpl extends Repository {
 
   @override
   Future<Either<Failure, HomeObject>> getHome() async {
-    if (!(await _networkInfo.isConnected)) {
-      return Left(DataSource.noInternetConnection.getFailure());
-    }
     try {
-      final response = await _remoteDataSource.getHome();
-
-      if (response.status == ApiInternalStatus.success) {
-        return Right(response.toDomain());
+      final response = await _localDataSource.getHome();
+      return Right(response.toDomain());
+    } catch (cacheError) {
+      if (!(await _networkInfo.isConnected)) {
+        return Left(DataSource.noInternetConnection.getFailure());
       }
+      try {
+        final response = await _remoteDataSource.getHome();
 
-      return Left(Failure(
-        response.status ?? ResponseCode.defaultError,
-        response.message ?? ResponseMessage.defaultError,
-      ));
-    } catch (error) {
-      return Left(ErrorHandler.handle(error).failure);
+        if (response.status == ApiInternalStatus.success) {
+          _localDataSource.saveHomeToCache(response);
+          return Right(response.toDomain());
+        }
+
+        return Left(Failure(
+          response.status ?? ResponseCode.defaultError,
+          response.message ?? ResponseMessage.defaultError,
+        ));
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
     }
   }
 }

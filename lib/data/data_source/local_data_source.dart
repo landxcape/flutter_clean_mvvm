@@ -3,12 +3,16 @@ import '../network/error_handler.dart';
 import '../responses/responses.dart';
 
 const cacheHomeKey = 'cacheHomeKey';
-const cacheHomeInterval = 6000; // 1 minutes in miliseconds
+const cacheHomeInterval = 60000; // 1 minutes in miliseconds
 
 abstract class LocalDataSource {
   Future<HomeResponse> getHome();
 
   Future<void> saveHomeToCache(HomeResponse homeResponse);
+
+  void clearCache();
+
+  void removeFromCache(String key);
 }
 
 class LocalDataSourceImpl implements LocalDataSource {
@@ -16,8 +20,10 @@ class LocalDataSourceImpl implements LocalDataSource {
   Map<String, CachedItem> cacheMap = {};
 
   @override
-  Future<HomeResponse> getHome() {
+  Future<HomeResponse> getHome() async {
     CachedItem? cachedItem = cacheMap[cacheHomeKey];
+    bool? test = cachedItem?.isValid(cacheHomeInterval);
+    print(test);
 
     if (cachedItem != null && cachedItem.isValid(cacheHomeInterval)) {
       return cachedItem.data;
@@ -29,6 +35,16 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   Future<void> saveHomeToCache(HomeResponse homeResponse) async {
     cacheMap[cacheHomeKey] = CachedItem(homeResponse);
+  }
+
+  @override
+  void clearCache() {
+    cacheMap.clear();
+  }
+
+  @override
+  void removeFromCache(String key) {
+    cacheMap.remove(key);
   }
 }
 
