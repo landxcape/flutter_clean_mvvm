@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
@@ -16,6 +17,30 @@ class AppPreferences {
     String? language = _sharedPreferences.getString(prefsKeyLang);
 
     return language ?? LanguageType.english.getValue();
+  }
+
+  Future<void> setLanguageChanged() async {
+    String currentLanguage = await getAppLanguage();
+
+    if (currentLanguage == LanguageType.nepali.getValue()) {
+      // save prefs with english
+      _sharedPreferences.setString(prefsKeyLang, LanguageType.english.getValue());
+    } else {
+      // save prefs with nepali
+      _sharedPreferences.setString(prefsKeyLang, LanguageType.nepali.getValue());
+    }
+  }
+
+  Future<Locale> getLocale() async {
+    String currentLanguage = await getAppLanguage();
+
+    if (currentLanguage == LanguageType.nepali.getValue()) {
+      // return nepali local
+      return nepaliLocale;
+    } else {
+      // return english local
+      return englishLocale;
+    }
   }
 
   Future<void> setOnboardingScreenViewed() async {
