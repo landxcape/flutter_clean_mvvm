@@ -22,8 +22,6 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   Future<HomeResponse> getHome() async {
     CachedItem? cachedItem = cacheMap[cacheHomeKey];
-    bool? test = cachedItem?.isValid(cacheHomeInterval);
-    print(test);
 
     if (cachedItem != null && cachedItem.isValid(cacheHomeInterval)) {
       return cachedItem.data;
