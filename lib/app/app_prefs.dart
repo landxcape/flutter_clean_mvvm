@@ -10,6 +10,7 @@ import '/presentation/resources/language_manager.dart';
 const String prefsKeyLang = 'prefsKeyLang';
 const String prefsKeyOnboardingScreen = 'prefsKeyOnboardingScreen';
 const String prefsKeyIsUserLoggedIn = 'prefsKeyIsUserLoggedIn';
+const String prefsKeyToken = 'prefsKeyToken';
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -51,6 +52,14 @@ class AppPreferences {
 
   Future<bool> isOnboardingScreenViewed() async {
     return _sharedPreferences.getBool(prefsKeyOnboardingScreen) ?? false;
+  }
+
+  Future<void> setToken(String token) async {
+    _sharedPreferences.setString(prefsKeyToken, token);
+  }
+
+  Future<String> getToken() async {
+    return _sharedPreferences.getString(prefsKeyToken) ?? 'NO SAVED TOKEN';
   }
 
   Future<void> setIsUserLoggedIn() async {

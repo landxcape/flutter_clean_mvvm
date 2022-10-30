@@ -14,7 +14,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
 
   final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
 
-  final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>();
+  final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
 
   LoginObject loginObject = const LoginObject('', '');
 
@@ -61,9 +61,9 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
       (data) {
         // right -> success (data)
         inputState.add(ContentState());
-
+        
         // navigate to main screen after login
-        isUserLoggedInSuccessfullyStreamController.add(true);
+        isUserLoggedInSuccessfullyStreamController.add('TOKENtESTgotFromDataInLogin');
       },
     );
   }

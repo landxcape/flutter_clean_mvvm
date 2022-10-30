@@ -36,9 +36,11 @@ class _LoginViewState extends State<LoginView> {
     _viewModel.start();
     _usernameController.addListener(() => _viewModel.setUsername(_usernameController.text));
     _passwordController.addListener(() => _viewModel.setPassword(_passwordController.text));
-    _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((isSuccessfullyLoggedIn) {
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((token) {
       // navigate to main screen
       _appPreferences.setIsUserLoggedIn();
+      _appPreferences.setToken(token);
+      resetAllModules();
       SchedulerBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
       });
