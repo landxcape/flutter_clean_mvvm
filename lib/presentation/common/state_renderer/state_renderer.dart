@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -60,14 +61,14 @@ class StateRenderer extends StatelessWidget {
         return _getPopupDialog(context, children: [
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppStrings.ok, context),
+          _getRetryButton(AppStrings.ok.tr(), context),
         ]);
       case StateRendererType.popupSuccessState:
         return _getPopupDialog(context, children: [
           _getAnimatedImage(JsonAssets.success),
           _getTitle(title),
           _getMessage(message),
-          _getRetryButton(AppStrings.ok, context),
+          _getRetryButton(AppStrings.ok.tr(), context),
         ]);
       case StateRendererType.fullScreenLoadingState:
         return _getItemsInColumn(children: [
@@ -78,7 +79,7 @@ class StateRenderer extends StatelessWidget {
         return _getItemsInColumn(children: [
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppStrings.retryAgain, context),
+          _getRetryButton(AppStrings.retryAgain.tr(), context),
         ]);
       case StateRendererType.contentScreenState:
         return Container();

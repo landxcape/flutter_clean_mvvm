@@ -40,7 +40,7 @@ class RepositoryImpl extends Repository {
           // return either left
           return Left(Failure(
             response.status ?? ResponseCode.defaultError,
-            response.message ?? ResponseMessage.defaultError,
+            response.message ?? ResponseMessage.defaultError.tr(),
           ));
         }
       } catch (error) {
@@ -66,7 +66,7 @@ class RepositoryImpl extends Repository {
 
       return Left(Failure(
         response.status ?? ResponseCode.defaultError,
-        response.message ?? ResponseMessage.defaultError,
+        response.message ?? ResponseMessage.defaultError.tr(),
       ));
     } catch (error) {
       return Left(ErrorHandler.handle(error).failure);
@@ -87,7 +87,7 @@ class RepositoryImpl extends Repository {
 
       return Left(Failure(
         response.status ?? ResponseCode.defaultError,
-        response.message ?? ResponseMessage.defaultError,
+        response.message ?? ResponseMessage.defaultError.tr(),
       ));
     } catch (error) {
       return Left(ErrorHandler.handle(error).failure);
@@ -113,7 +113,7 @@ class RepositoryImpl extends Repository {
 
         return Left(Failure(
           response.status ?? ResponseCode.defaultError,
-          response.message ?? ResponseMessage.defaultError,
+          response.message ?? ResponseMessage.defaultError.tr(),
         ));
       } catch (error) {
         return Left(ErrorHandler.handle(error).failure);
@@ -140,7 +140,7 @@ class RepositoryImpl extends Repository {
 
         return Left(Failure(
           response.status ?? ResponseCode.defaultError,
-          response.message ?? ResponseMessage.defaultError,
+          response.message ?? ResponseMessage.defaultError.tr(),
         ));
       } catch (error) {
         return Left(ErrorHandler.handle(error).failure);

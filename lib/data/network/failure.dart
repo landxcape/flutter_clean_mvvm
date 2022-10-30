@@ -1,4 +1,6 @@
 // Project imports:
+import 'package:easy_localization/easy_localization.dart';
+
 import '/data/network/error_handler.dart';
 
 class Failure {
@@ -12,5 +14,5 @@ class Failure {
 }
 
 class DefaultFailure extends Failure {
-  DefaultFailure() : super(ResponseCode.defaultError, ResponseMessage.defaultError);
+  DefaultFailure() : super(ResponseCode.defaultError, ResponseMessage.defaultError.tr());
 }

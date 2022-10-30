@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -14,8 +15,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(AppStrings.search),
+    return Center(
+      child: const Text(AppStrings.search).tr(),
     );
   }
 }
