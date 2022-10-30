@@ -43,6 +43,11 @@ class AppStrings {
   static const String about = "About Store";
   static const String storeDetails = "Store details";
 
+  static const String changeLanguage = 'Change Language';
+  static const String contactUs = "Contact Us";
+  static const String inviteYourFriends = "Invite Your Friends";
+  static const String logout = "Logout";
+
   static const String success = 'Success';
   static const String loading = 'Loading...';
   static const String retryAgain = 'Retry Again';
