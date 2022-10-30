@@ -1,5 +1,6 @@
 // Package imports:
 import 'package:dartz/dartz.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
 import '../data_source/local_data_source.dart';
