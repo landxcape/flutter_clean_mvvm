@@ -56,7 +56,7 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewMode
     // _storesController.close();
     _dataStreamController.close();
   }
-  
+
   @override
   Sink get inputHomeData => _dataStreamController.sink;
 

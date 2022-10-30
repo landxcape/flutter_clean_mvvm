@@ -88,3 +88,16 @@ extension HomeResponseMapper on HomeResponse? {
     return HomeObject(data: data);
   }
 }
+
+extension StoreDetailsResponseMapper on StoreDetailsResponse? {
+  StoreDetails toDomain() {
+    return StoreDetails(
+      id: this?.id?.orZero() ?? zeroInt,
+      title: this?.title?.orEmpty() ?? emptyString,
+      image: this?.image?.orEmpty() ?? emptyString,
+      details: this?.details?.orEmpty() ?? emptyString,
+      services: this?.services?.orEmpty() ?? emptyString,
+      about: this?.about?.orEmpty() ?? emptyString,
+    );
+  }
+}

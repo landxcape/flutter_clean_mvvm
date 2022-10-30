@@ -10,8 +10,10 @@ import 'package:flutter_clean_mvvm/presentation/main/home/home_viewmodel.dart';
 import '../data/data_source/local_data_source.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/usecase/register_usecase.dart';
+import '../domain/usecase/store_details_usecase.dart';
 import '../presentation/forgot_password/forgot_password_viewmodel.dart';
 import '../presentation/register/register_viewmodel.dart';
+import '../presentation/store_details/store_details_viewmodel.dart';
 import '/app/app_prefs.dart';
 import '/data/data_source/remote_data_source.dart';
 import '/data/network/app_api.dart';
@@ -79,5 +81,12 @@ initHomeModule() {
   if (!GetIt.I.isRegistered<HomeUseCase>()) {
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
     instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
+  }
+}
+
+initStoreDetailsModule() {
+  if (!GetIt.I.isRegistered<StoreDetailsUseCase>()) {
+    instance.registerFactory<StoreDetailsUseCase>(() => StoreDetailsUseCase(instance()));
+    instance.registerFactory<StoreDetailsViewModel>(() => StoreDetailsViewModel(instance()));
   }
 }
