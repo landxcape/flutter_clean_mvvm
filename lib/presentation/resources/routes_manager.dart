@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
 import '/app/dependency_injection.dart';
 import '/presentation/forgot_password/forgot_password.dart';
@@ -11,7 +14,6 @@ import '/presentation/register/register.dart';
 import '/presentation/resources/strings_manager.dart';
 import '/presentation/splash/splash.dart';
 import '/presentation/store_details/store_details.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class Routes {
   static const String splashRoute = '/';

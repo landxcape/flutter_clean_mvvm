@@ -1,18 +1,19 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
 
-// Project imports:
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// Project imports:
 import '../../app/dependency_injection.dart';
 import '../../data/data_source/local_data_source.dart';
+import '/app/app_prefs.dart';
+import '/presentation/resources/assets_manager.dart';
+import '/presentation/resources/routes_manager.dart';
+import '/presentation/resources/strings_manager.dart';
+import '/presentation/resources/values_manager.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);

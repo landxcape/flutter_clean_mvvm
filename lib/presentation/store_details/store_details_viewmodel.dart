@@ -25,6 +25,7 @@ class StoreDetailsViewModel extends BaseViewModel with StoreDetailsViewModelInpu
 
   _loadData() async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.fullScreenLoadingState));
+    // ignore: void_checks
     (await storeDetailsUseCase.execute(Void)).fold(
       (failure) {
         inputState.add(ErrorState(StateRendererType.fullScreenErrorState, failure.message));

@@ -6,11 +6,11 @@ import 'dart:ffi';
 import 'package:rxdart/rxdart.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/domain/model/model.dart';
-import 'package:flutter_clean_mvvm/presentation/base/baseviewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer.dart';
-import 'package:flutter_clean_mvvm/presentation/common/state_renderer/state_renderer_impl.dart';
 import '../../../domain/usecase/home_usecase.dart';
+import '/domain/model/model.dart';
+import '/presentation/base/baseviewmodel.dart';
+import '/presentation/common/state_renderer/state_renderer.dart';
+import '/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewModelOutputs {
   final HomeUseCase _homeUseCase;
@@ -30,6 +30,7 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs, HomeViewMode
   _getHome() async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.fullScreenLoadingState));
 
+    // ignore: void_checks
     (await _homeUseCase.execute(Void)).fold(
       (failure) {
         inputState.add(ErrorState(StateRendererType.fullScreenErrorState, failure.message));

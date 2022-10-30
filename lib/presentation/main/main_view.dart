@@ -1,15 +1,17 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
-import 'package:flutter_clean_mvvm/presentation/main/home_page.dart';
-import 'package:flutter_clean_mvvm/presentation/main/notifications_page.dart';
-import 'package:flutter_clean_mvvm/presentation/main/search_page.dart';
-import 'package:flutter_clean_mvvm/presentation/main/settings_page.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
+import '/presentation/main/home_page.dart';
+import '/presentation/main/notifications_page.dart';
+import '/presentation/main/search_page.dart';
+import '/presentation/main/settings_page.dart';
+import '/presentation/resources/color_manager.dart';
+import '/presentation/resources/strings_manager.dart';
+import '/presentation/resources/values_manager.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);

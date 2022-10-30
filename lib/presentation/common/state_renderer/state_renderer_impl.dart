@@ -3,11 +3,13 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
 import '/data/mapper/mapper.dart';
 import '/presentation/common/state_renderer/state_renderer.dart';
 import '/presentation/resources/strings_manager.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 abstract class FlowState {
   StateRendererType getStateRendererType();

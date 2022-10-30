@@ -1,9 +1,11 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
+import '/presentation/resources/strings_manager.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);

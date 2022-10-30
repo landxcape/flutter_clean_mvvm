@@ -1,11 +1,13 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/language_manager.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 // Project imports:
 import '/app/dependency_injection.dart';
+import '/presentation/resources/language_manager.dart';
 import 'app/app.dart';
 
 void main() async {

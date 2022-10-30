@@ -2,10 +2,12 @@
 import 'dart:async';
 import 'dart:io';
 
-// Project imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_clean_mvvm/data/network/error_handler.dart';
+
+// Project imports:
 import '/app/functions.dart';
+import '/data/network/error_handler.dart';
 import '/domain/usecase/register_usecase.dart';
 import '/presentation/base/baseviewmodel.dart';
 import '/presentation/common/freezed_data_classes.dart';

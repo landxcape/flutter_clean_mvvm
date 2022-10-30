@@ -1,6 +1,7 @@
-// Project imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 
+// Project imports:
 import '/data/network/error_handler.dart';
 
 class Failure {

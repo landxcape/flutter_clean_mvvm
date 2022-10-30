@@ -7,22 +7,22 @@ import 'package:flutter/scheduler.dart';
 
 // Package imports:
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/app/constants.dart';
-import 'package:flutter_clean_mvvm/data/mapper/mapper.dart';
 import '../resources/assets_manager.dart';
 import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
+import '/app/app_prefs.dart';
+import '/app/constants.dart';
 import '/app/dependency_injection.dart';
+import '/data/mapper/mapper.dart';
 import '/presentation/common/state_renderer/state_renderer_impl.dart';
 import '/presentation/register/register_viewmodel.dart';
 import '/presentation/resources/color_manager.dart';
 import '/presentation/resources/values_manager.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);

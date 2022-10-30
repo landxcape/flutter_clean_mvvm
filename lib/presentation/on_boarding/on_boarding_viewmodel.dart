@@ -1,12 +1,14 @@
 // Dart imports:
 import 'dart:async';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
 import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
 import '/domain/model/model.dart';
 import '/presentation/base/baseviewmodel.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class OnBoardingViewModel extends BaseViewModel with OnBoardingViewModelInputs, OnBoardingViewModelOutputs {
   //stream controllers

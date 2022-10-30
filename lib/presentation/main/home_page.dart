@@ -1,19 +1,19 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
-import 'package:flutter_clean_mvvm/domain/model/model.dart';
-import 'package:flutter_clean_mvvm/presentation/main/home/home_viewmodel.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/color_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
-import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 import '../common/state_renderer/state_renderer_impl.dart';
+import '/app/dependency_injection.dart';
+import '/domain/model/model.dart';
+import '/presentation/main/home/home_viewmodel.dart';
+import '/presentation/resources/color_manager.dart';
+import '/presentation/resources/routes_manager.dart';
+import '/presentation/resources/strings_manager.dart';
+import '/presentation/resources/values_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

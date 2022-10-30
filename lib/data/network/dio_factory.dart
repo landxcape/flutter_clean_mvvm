@@ -40,7 +40,7 @@ class DioFactory {
     );
 
     if (kReleaseMode) {
-      print('Release Mode no logs');
+      // print('Release Mode no logs');
     } else {
       dio.interceptors.add(PrettyDioLogger(
         requestHeader: true,

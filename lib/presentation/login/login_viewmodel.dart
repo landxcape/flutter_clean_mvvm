@@ -55,12 +55,10 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
     )))
         .fold(
       (failure) {
-        print('-------------------failure----------------------');
         // left -> failure
         inputState.add(ErrorState(StateRendererType.popupErrorState, failure.message));
       },
       (data) {
-        print('-------------------success----------------------');
         // right -> success (data)
         inputState.add(ContentState());
 

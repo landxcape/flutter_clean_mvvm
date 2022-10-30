@@ -1,10 +1,12 @@
 // Flutter imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_mvvm/app/app_prefs.dart';
-import 'package:flutter_clean_mvvm/app/dependency_injection.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import '/app/app_prefs.dart';
+import '/app/dependency_injection.dart';
 import '/presentation/resources/routes_manager.dart';
 import '/presentation/resources/theme_manager.dart';
 

@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
 // Project imports:
 import '../common/state_renderer/state_renderer_impl.dart';
 import '/app/app_prefs.dart';
@@ -12,7 +15,6 @@ import '/presentation/resources/color_manager.dart';
 import '/presentation/resources/routes_manager.dart';
 import '/presentation/resources/strings_manager.dart';
 import '/presentation/resources/values_manager.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
