@@ -1,11 +1,16 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_mvvm/app/app_prefs.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/assets_manager.dart';
+import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
 
 // Project imports:
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../app/dependency_injection.dart';
+import '../../data/data_source/local_data_source.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -15,6 +20,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final LocalDataSource _localDataSource = instance<LocalDataSource>();
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -27,7 +35,9 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           leading: SvgPicture.asset(ImageAssets.changeLangIc),
           trailing: SvgPicture.asset(ImageAssets.settingsRightArrowIc),
-          onTap: () {},
+          onTap: () {
+            _changeLanguage();
+          },
         ),
         ListTile(
           title: Text(
@@ -36,7 +46,9 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           leading: SvgPicture.asset(ImageAssets.contactUsIc),
           trailing: SvgPicture.asset(ImageAssets.settingsRightArrowIc),
-          onTap: () {},
+          onTap: () {
+            _contactUs();
+          },
         ),
         ListTile(
           title: Text(
@@ -45,7 +57,9 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           leading: SvgPicture.asset(ImageAssets.inviteFriendsIc),
           trailing: SvgPicture.asset(ImageAssets.settingsRightArrowIc),
-          onTap: () {},
+          onTap: () {
+            _inviteFriends();
+          },
         ),
         ListTile(
           title: Text(
@@ -54,9 +68,30 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           leading: SvgPicture.asset(ImageAssets.logoutIc),
           trailing: SvgPicture.asset(ImageAssets.settingsRightArrowIc),
-          onTap: () {},
+          onTap: () {
+            _logout();
+          },
         ),
       ],
     );
+  }
+
+  void _changeLanguage() {
+    // add localization
+  }
+
+  void _contactUs() {
+    // redirect to webpage
+  }
+
+  void _inviteFriends() {
+    // share app name with friends
+  }
+
+  void _logout() {
+    _appPreferences.logout();
+    _localDataSource.clearCache();
+
+    Navigator.of(context).pushReplacementNamed(Routes.loginRoute);
   }
 }
