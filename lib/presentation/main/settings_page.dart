@@ -8,6 +8,7 @@ import 'package:flutter_clean_mvvm/presentation/resources/routes_manager.dart';
 // Project imports:
 import 'package:flutter_clean_mvvm/presentation/resources/strings_manager.dart';
 import 'package:flutter_clean_mvvm/presentation/resources/values_manager.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../app/dependency_injection.dart';
@@ -79,6 +80,8 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _changeLanguage() {
     // add localization
+    _appPreferences.setLanguageChanged();
+    Phoenix.rebirth(context); // restart to apply language changes
   }
 
   void _contactUs() {
