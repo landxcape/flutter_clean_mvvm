@@ -61,7 +61,7 @@ class LoginViewModel extends BaseViewModel with LoginViewModelInputs, LoginViewM
       (data) {
         // right -> success (data)
         inputState.add(ContentState());
-        
+
         // navigate to main screen after login
         isUserLoggedInSuccessfullyStreamController.add('TOKENtESTgotFromDataInLogin');
       },
